@@ -48,6 +48,7 @@
 		C2716CFE165EDCC800ED24C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C2716CFF165EDCC800ED24C2 /* pingu-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pingu-Info.plist"; sourceTree = "<group>"; };
 		C2716D00165EDCC800ED24C2 /* pingu-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pingu-Prefix.pch"; sourceTree = "<group>"; };
+		C2716D1A165EDE6600ED24C2 /* Dependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dependencies.h; sourceTree = "<group>"; };
 		C39A2561165EB20900F0E242 /* pingu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39A2565165EB20900F0E242 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39A2567165EB20900F0E242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +84,7 @@
 			children = (
 				C2716CE9165EDCC800ED24C2 /* AppDelegate.h */,
 				C2716CEA165EDCC800ED24C2 /* AppDelegate.m */,
+				C2716D1A165EDE6600ED24C2 /* Dependencies.h */,
 				C2716CEB165EDCC800ED24C2 /* main.m */,
 			);
 			name = classes;
