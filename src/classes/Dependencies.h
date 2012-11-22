@@ -29,4 +29,3 @@
 #import <Foundation/Foundation.h>
 
 // library dependency includes
-#import <Cameo/Cameo.h>
