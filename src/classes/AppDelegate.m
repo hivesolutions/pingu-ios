@@ -25,6 +25,8 @@
 
 #import "AppDelegate.h"
 
+#import "StatusViewController.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -36,9 +38,21 @@
     // them to the expected behavior
     [self setLayout];
     
+    // creates the status view controller as the "main" view controller
+    // to be used by the application
+    StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewController" bundle:nil];
+    
+    // creates the naviation controller to be used for the controll
+    // of the various navigation controller
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statusViewController];
+    
+    // creates the window object and sets its root view controller with the
+    // created navigation controller the sets it as visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
+    
+    // returns success, application started with success
     return YES;
 }
 
@@ -71,26 +85,6 @@
     // sets the bar style for the global appearence as black opaque so that the
     // characters are correctly rendered
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    
-    // retrieves the various button related images for the button and the
-    // back button and sets them in the global appearence object so that
-    // the naviation controller's buttons are affected by the behavior
-    UIImage *buttonImage = [[UIImage imageNamed:@"button-gray.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *buttonImagePressed = [[UIImage imageNamed:@"button-gray-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *buttonImageSmall = [[UIImage imageNamed:@"button-gray-small.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *buttonImageSmallPressed = [[UIImage imageNamed:@"button-gray-small-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    UIImage *backImage = [[UIImage imageNamed:@"button-back-gray.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
-    UIImage *backImagePressed = [[UIImage imageNamed:@"button-back-gray-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
-    UIImage *backImageSmall = [[UIImage imageNamed:@"button-back-gray-small.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
-    UIImage *backImageSmallPressed = [[UIImage imageNamed:@"button-back-gray-small-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImageSmall forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImageSmallPressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackgroundImage:buttonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundImage:buttonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundImage:buttonImageSmall forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-    [[UIBarButtonItem appearance] setBackgroundImage:buttonImageSmallPressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
 }
 
 @end

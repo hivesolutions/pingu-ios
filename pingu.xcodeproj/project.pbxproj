@@ -26,6 +26,14 @@
 		C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2565165EB20900F0E242 /* UIKit.framework */; };
 		C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2567165EB20900F0E242 /* Foundation.framework */; };
 		C39A256A165EB20900F0E242 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2569165EB20900F0E242 /* CoreGraphics.framework */; };
+		C3A57CD61667D62A00FC8167 /* main-background.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CD41667D62A00FC8167 /* main-background.png */; };
+		C3A57CD71667D62A00FC8167 /* main-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CD51667D62A00FC8167 /* main-background@2x.png */; };
+		C3A57CE31667DF3700FC8167 /* header-background-small.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CDD1667DF3700FC8167 /* header-background-small.png */; };
+		C3A57CE41667DF3700FC8167 /* header-background-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CDE1667DF3700FC8167 /* header-background-small@2x.png */; };
+		C3A57CE51667DF3700FC8167 /* header-background.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CDF1667DF3700FC8167 /* header-background.png */; };
+		C3A57CE61667DF3700FC8167 /* header-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CE01667DF3700FC8167 /* header-background@2x.png */; };
+		C3A57CE71667DF3700FC8167 /* logo-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CE11667DF3700FC8167 /* logo-menu.png */; };
+		C3A57CE81667DF3700FC8167 /* logo-menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CE21667DF3700FC8167 /* logo-menu@2x.png */; };
 		C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ADEF0D1667D375006FA274 /* StatusViewController.m */; };
 		C3ADEF141667D3A1006FA274 /* StatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ADEF131667D3A1006FA274 /* StatusViewController.xib */; };
 /* End PBXBuildFile section */
@@ -55,6 +63,14 @@
 		C39A2565165EB20900F0E242 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39A2567165EB20900F0E242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C39A2569165EB20900F0E242 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C3A57CD41667D62A00FC8167 /* main-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main-background.png"; sourceTree = "<group>"; };
+		C3A57CD51667D62A00FC8167 /* main-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main-background@2x.png"; sourceTree = "<group>"; };
+		C3A57CDD1667DF3700FC8167 /* header-background-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-background-small.png"; sourceTree = "<group>"; };
+		C3A57CDE1667DF3700FC8167 /* header-background-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-background-small@2x.png"; sourceTree = "<group>"; };
+		C3A57CDF1667DF3700FC8167 /* header-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-background.png"; sourceTree = "<group>"; };
+		C3A57CE01667DF3700FC8167 /* header-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-background@2x.png"; sourceTree = "<group>"; };
+		C3A57CE11667DF3700FC8167 /* logo-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-menu.png"; sourceTree = "<group>"; };
+		C3A57CE21667DF3700FC8167 /* logo-menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-menu@2x.png"; sourceTree = "<group>"; };
 		C3ADEF0C1667D375006FA274 /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		C3ADEF0D1667D375006FA274 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		C3ADEF131667D3A1006FA274 /* StatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewController.xib; sourceTree = "<group>"; };
@@ -103,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				C2716CED165EDCC800ED24C2 /* icons */,
+				C3A57CD31667D62A00FC8167 /* images */,
 				C2716CF8165EDCC800ED24C2 /* tiles */,
 			);
 			name = static;
@@ -172,6 +189,21 @@
 				C39A2569165EB20900F0E242 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C3A57CD31667D62A00FC8167 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C3A57CDD1667DF3700FC8167 /* header-background-small.png */,
+				C3A57CDE1667DF3700FC8167 /* header-background-small@2x.png */,
+				C3A57CDF1667DF3700FC8167 /* header-background.png */,
+				C3A57CE01667DF3700FC8167 /* header-background@2x.png */,
+				C3A57CE11667DF3700FC8167 /* logo-menu.png */,
+				C3A57CE21667DF3700FC8167 /* logo-menu@2x.png */,
+				C3A57CD41667D62A00FC8167 /* main-background.png */,
+				C3A57CD51667D62A00FC8167 /* main-background@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 		C3ADEF121667D3A1006FA274 /* views */ = {
@@ -249,6 +281,14 @@
 				C2716D0F165EDCC800ED24C2 /* Default@2x.png in Resources */,
 				C2716D10165EDCC800ED24C2 /* InfoPlist.strings in Resources */,
 				C3ADEF141667D3A1006FA274 /* StatusViewController.xib in Resources */,
+				C3A57CD61667D62A00FC8167 /* main-background.png in Resources */,
+				C3A57CD71667D62A00FC8167 /* main-background@2x.png in Resources */,
+				C3A57CE31667DF3700FC8167 /* header-background-small.png in Resources */,
+				C3A57CE41667DF3700FC8167 /* header-background-small@2x.png in Resources */,
+				C3A57CE51667DF3700FC8167 /* header-background.png in Resources */,
+				C3A57CE61667DF3700FC8167 /* header-background@2x.png in Resources */,
+				C3A57CE71667DF3700FC8167 /* logo-menu.png in Resources */,
+				C3A57CE81667DF3700FC8167 /* logo-menu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
