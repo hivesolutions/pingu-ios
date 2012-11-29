@@ -26,6 +26,8 @@
 		C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2565165EB20900F0E242 /* UIKit.framework */; };
 		C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2567165EB20900F0E242 /* Foundation.framework */; };
 		C39A256A165EB20900F0E242 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2569165EB20900F0E242 /* CoreGraphics.framework */; };
+		C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ADEF0D1667D375006FA274 /* StatusViewController.m */; };
+		C3ADEF141667D3A1006FA274 /* StatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ADEF131667D3A1006FA274 /* StatusViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +55,9 @@
 		C39A2565165EB20900F0E242 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39A2567165EB20900F0E242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C39A2569165EB20900F0E242 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C3ADEF0C1667D375006FA274 /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
+		C3ADEF0D1667D375006FA274 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
+		C3ADEF131667D3A1006FA274 /* StatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,7 @@
 				C2716CE8165EDCC800ED24C2 /* classes */,
 				C2716CEC165EDCC800ED24C2 /* static */,
 				C2716CFC165EDCC800ED24C2 /* support */,
+				C3ADEF121667D3A1006FA274 /* views */,
 			);
 			name = Pingu;
 			sourceTree = "<group>";
@@ -86,6 +92,8 @@
 				C2716CEA165EDCC800ED24C2 /* AppDelegate.m */,
 				C2716D1A165EDE6600ED24C2 /* Dependencies.h */,
 				C2716CEB165EDCC800ED24C2 /* main.m */,
+				C3ADEF0C1667D375006FA274 /* StatusViewController.h */,
+				C3ADEF0D1667D375006FA274 /* StatusViewController.m */,
 			);
 			name = classes;
 			path = src/classes;
@@ -166,6 +174,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C3ADEF121667D3A1006FA274 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C3ADEF131667D3A1006FA274 /* StatusViewController.xib */,
+			);
+			name = views;
+			path = src/views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -231,6 +248,7 @@
 				C2716D0E165EDCC800ED24C2 /* Default.png in Resources */,
 				C2716D0F165EDCC800ED24C2 /* Default@2x.png in Resources */,
 				C2716D10165EDCC800ED24C2 /* InfoPlist.strings in Resources */,
+				C3ADEF141667D3A1006FA274 /* StatusViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +261,7 @@
 			files = (
 				C2716D01165EDCC800ED24C2 /* AppDelegate.m in Sources */,
 				C2716D02165EDCC800ED24C2 /* main.m in Sources */,
+				C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
