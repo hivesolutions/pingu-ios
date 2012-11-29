@@ -43,6 +43,27 @@
     // should be set as a pattern
     UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"LogoutButtonTitle", @"Logout")
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(logoutClick:)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-refresh.png"]
+                                                        landscapeImagePhone:[UIImage imageNamed:@"icon-refresh-small.png"]
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(refreshClick:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
+    self.navigationItem.rightBarButtonItem = refreshButton;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+  //  HMProxyRequest *_proxyRequest = [[HMProxyRequest alloc] initWithPath:self path:@"sets.json"];
+//    _proxyRequest.delegate = self;
+  //  _proxyRequest.parameters = [NSArray arrayWithObjects: nil];
+  //  [_proxyRequest load];
 }
 
 - (void)didReceiveMemoryWarning {
