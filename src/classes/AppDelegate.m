@@ -72,6 +72,9 @@
 }
 
 - (void)setDefaults {
+    // sets the logo in the proxy request so that all the components
+    // to generated from it use this logo
+    [HMProxyRequest setLogo:[UIImage imageNamed:@"logo.png"]];
 }
 
 - (void)setLayout {
@@ -85,6 +88,49 @@
     // sets the bar style for the global appearence as black opaque so that the
     // characters are correctly rendered
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    
+    // retrieves the various button related images for the button and the
+    // back button and sets them in the global appearence object so that
+    // the naviation controller's buttons are affected by the behavior
+    UIImage *buttonImage = [[UIImage imageNamed:@"button-blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *buttonImagePressed = [[UIImage imageNamed:@"button-blue-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *buttonImageSmall = [[UIImage imageNamed:@"button-blue-small.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *buttonImageSmallPressed = [[UIImage imageNamed:@"button-blue-small-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    UIImage *backImage = [[UIImage imageNamed:@"button-back-blue.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
+    UIImage *backImagePressed = [[UIImage imageNamed:@"button-back-blue-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
+    UIImage *backImageSmall = [[UIImage imageNamed:@"button-back-blue-small.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
+    UIImage *backImageSmallPressed = [[UIImage imageNamed:@"button-back-blue-small-pressed.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 16, 0, 6)];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImageSmall forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backImageSmallPressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
+    [[UIBarButtonItem appearance] setBackgroundImage:buttonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:buttonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundImage:buttonImageSmall forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+    [[UIBarButtonItem appearance] setBackgroundImage:buttonImageSmallPressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
+
+    // creates an attributes dictionary and populates it with both the text shadow
+    // color and the the offset for it then sets in the gobal appearence map for
+    // the control state normal (should apply to all the navigation bars)
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0] forKey:UITextAttributeTextShadowColor];
+    [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(-1.0, -1.0)] forKey:UITextAttributeTextShadowOffset];
+    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+    
+    // creates an attributes dictionary and populates it with both the text shadow
+    // color and the the offset for it then sets in the gobal appearence map for
+    // the control state normal (should apply to all the bar buttons)
+    attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0] forKey:UITextAttributeTextShadowColor];
+    [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(1.0, 1.0)] forKey:UITextAttributeTextShadowOffset];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    // creates an attributes dictionary and populates it with both the text colloer
+    // for it then sets in the gobal appearence map for the control state normal
+    // (should apply to all the tab bar items)
+    attributes = [NSMutableDictionary dictionary];
+    [attributes setValue:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [[UITabBarItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
 }
 
 @end
