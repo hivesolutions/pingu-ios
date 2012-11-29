@@ -22,3 +22,26 @@
 // __date__      = $LastChangedDate$
 // __copyright__ = Copyright (c) 2008-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
+
+"cameras" = "cameras";
+
+"Sets" = "Grupos";
+"Cameras" = "Cameras";
+"About" = "Sobre";
+"Confirm" = "Confirmar";
+"Sign In" = "Entrar";
+"Forgot your password ?" = "Esqueceu a sua palavra-passe ?";
+
+"LoginError" = "Erro de Login";
+"ConnectionError" = "Erro de Conexão";
+
+"CredentialAlertTitle" = "Autorização Necessária";
+"CancelButtonTitle" = "Cancelar";
+"LoginButtonTitle" = "Entrar";
+"LogoutButtonTitle" = "Sair";
+"RefreshButtonTitle" = "Refrescar";
+"UsernamePlaceholderText" = "Utilizador";
+"PasswordPlaceholderText" = "Palavra-passe";
+
+"Both username and password must be provided" = "Tanto utilizador como palavra-passe têm de ser fornecidos";
+"Invalid username and/or password" = "Utilizador e/ou palavra-passe errados";

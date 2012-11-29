@@ -22,3 +22,26 @@
 // __date__      = $LastChangedDate$
 // __copyright__ = Copyright (c) 2008-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
+
+"cameras" = "cameras";
+
+"Sets" = "Sets";
+"Cameras" = "Cameras";
+"About" = "About";
+"Confirm" = "Confirm";
+"Sign In" = "Sign In";
+"Forgot your password ?" = "Forgot your password ?";
+
+"LoginError" = "Login Error";
+"ConnectionError" = "Connection Error";
+
+"CredentialAlertTitle" = "Authorization Required";
+"CancelButtonTitle" = "Cancel";
+"LoginButtonTitle" = "Log in";
+"LogoutButtonTitle" = "Log out";
+"RefreshButtonTitle" = "Refresh";
+"UsernamePlaceholderText" = "Username";
+"PasswordPlaceholderText" = "Password";
+
+"Both username and password must be provided" = "Both username and password must be provided";
+"Invalid username and/or password" = "Invalid user name and/or password";
