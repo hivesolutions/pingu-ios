@@ -26,6 +26,7 @@
 #import "AppDelegate.h"
 
 #import "StatusViewController.h"
+#import "ServersViewController.h"
 
 @implementation AppDelegate
 
@@ -38,18 +39,28 @@
     // them to the expected behavior
     [self setLayout];
     
-    // creates the status view controller as the "main" view controller
-    // to be used by the application
-    StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewController" bundle:nil];
     
-    // creates the naviation controller to be used for the controll
-    // of the various navigation controller
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statusViewController];
     
-    // creates the window object and sets its root view controller with the
-    // created navigation controller the sets it as visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = navigationController;
+    
+
+    if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        // creates the status view controller as the "main" view controller
+        // to be used by the application
+        StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewController" bundle:nil];
+    
+        // creates the naviation controller to be used for the controll
+        // of the various navigation controller
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statusViewController];
+        
+        self.window.rootViewController = navigationController;
+    } else {
+        ServersViewController *serversViewController = [[ServersViewController alloc] initWithNibName:@"ServersViewController" bundle:nil];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewController];
+
+        self.window.rootViewController = navigationController;
+    }
+
     [self.window makeKeyAndVisible];
     
     // returns success, application started with success

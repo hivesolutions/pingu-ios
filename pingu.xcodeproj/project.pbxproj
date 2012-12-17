@@ -23,6 +23,18 @@
 		C2716D0E165EDCC800ED24C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C2716CFA165EDCC800ED24C2 /* Default.png */; };
 		C2716D0F165EDCC800ED24C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2716CFB165EDCC800ED24C2 /* Default@2x.png */; };
 		C2716D10165EDCC800ED24C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C2716CFD165EDCC800ED24C2 /* Localizable.strings */; };
+		C34E676C167F4D19006A46C3 /* chart-lines-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6762167F4D19006A46C3 /* chart-lines-ipad.png */; };
+		C34E676D167F4D19006A46C3 /* chart-lines-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6763167F4D19006A46C3 /* chart-lines-ipad@2x.png */; };
+		C34E676E167F4D19006A46C3 /* chart-lines.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6764167F4D19006A46C3 /* chart-lines.png */; };
+		C34E676F167F4D19006A46C3 /* chart-lines@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6765167F4D19006A46C3 /* chart-lines@2x.png */; };
+		C34E6770167F4D19006A46C3 /* chart-round-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6766167F4D19006A46C3 /* chart-round-ipad.png */; };
+		C34E6771167F4D19006A46C3 /* chart-round-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6767167F4D19006A46C3 /* chart-round-ipad@2x.png */; };
+		C34E6772167F4D19006A46C3 /* chart-round.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6768167F4D19006A46C3 /* chart-round.png */; };
+		C34E6773167F4D19006A46C3 /* chart-round@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6769167F4D19006A46C3 /* chart-round@2x.png */; };
+		C34E6774167F4D19006A46C3 /* panels-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E676A167F4D19006A46C3 /* panels-ipad.png */; };
+		C34E6775167F4D19006A46C3 /* panels-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E676B167F4D19006A46C3 /* panels-ipad@2x.png */; };
+		C34E677D167F4E37006A46C3 /* ServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34E677B167F4E37006A46C3 /* ServersViewController.m */; };
+		C34E6780167F4E4C006A46C3 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34E677F167F4E4C006A46C3 /* ServersViewController.xib */; };
 		C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2565165EB20900F0E242 /* UIKit.framework */; };
 		C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2567165EB20900F0E242 /* Foundation.framework */; };
 		C39A256A165EB20900F0E242 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2569165EB20900F0E242 /* CoreGraphics.framework */; };
@@ -62,6 +74,14 @@
 		C3A57D221667E56800FC8167 /* button-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57D121667E56800FC8167 /* button-blue@2x.png */; };
 		C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ADEF0D1667D375006FA274 /* StatusViewController.m */; };
 		C3ADEF141667D3A1006FA274 /* StatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3ADEF131667D3A1006FA274 /* StatusViewController.xib */; };
+		C3C8EC10167F5DAD0003C192 /* FlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C8EC0F167F5DAD0003C192 /* FlipView.m */; };
+		C3C8EC12167F5E9A0003C192 /* tobias.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC11167F5E9A0003C192 /* tobias.jpg */; };
+		C3C8EC1A167F79290003C192 /* tobias2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC19167F79290003C192 /* tobias2.jpg */; };
+		C3C8EC1C167F84E80003C192 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C8EC1B167F84E80003C192 /* QuartzCore.framework */; };
+		C3C8EC27167F9A4F0003C192 /* list-item.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC25167F9A4F0003C192 /* list-item.png */; };
+		C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC26167F9A4F0003C192 /* list-item@2x.png */; };
+		C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */; };
+		C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +105,19 @@
 		C2716CFF165EDCC800ED24C2 /* pingu-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pingu-Info.plist"; sourceTree = "<group>"; };
 		C2716D00165EDCC800ED24C2 /* pingu-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pingu-Prefix.pch"; sourceTree = "<group>"; };
 		C2716D1A165EDE6600ED24C2 /* Dependencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dependencies.h; sourceTree = "<group>"; };
+		C34E6762167F4D19006A46C3 /* chart-lines-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-lines-ipad.png"; sourceTree = "<group>"; };
+		C34E6763167F4D19006A46C3 /* chart-lines-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-lines-ipad@2x.png"; sourceTree = "<group>"; };
+		C34E6764167F4D19006A46C3 /* chart-lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-lines.png"; sourceTree = "<group>"; };
+		C34E6765167F4D19006A46C3 /* chart-lines@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-lines@2x.png"; sourceTree = "<group>"; };
+		C34E6766167F4D19006A46C3 /* chart-round-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-round-ipad.png"; sourceTree = "<group>"; };
+		C34E6767167F4D19006A46C3 /* chart-round-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-round-ipad@2x.png"; sourceTree = "<group>"; };
+		C34E6768167F4D19006A46C3 /* chart-round.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-round.png"; sourceTree = "<group>"; };
+		C34E6769167F4D19006A46C3 /* chart-round@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-round@2x.png"; sourceTree = "<group>"; };
+		C34E676A167F4D19006A46C3 /* panels-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels-ipad.png"; sourceTree = "<group>"; };
+		C34E676B167F4D19006A46C3 /* panels-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels-ipad@2x.png"; sourceTree = "<group>"; };
+		C34E677A167F4E37006A46C3 /* ServersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewController.h; sourceTree = "<group>"; };
+		C34E677B167F4E37006A46C3 /* ServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewController.m; sourceTree = "<group>"; };
+		C34E677F167F4E4C006A46C3 /* ServersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
 		C39A2561165EB20900F0E242 /* pingu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39A2565165EB20900F0E242 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39A2567165EB20900F0E242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -127,6 +160,16 @@
 		C3ADEF0C1667D375006FA274 /* StatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusViewController.h; sourceTree = "<group>"; };
 		C3ADEF0D1667D375006FA274 /* StatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusViewController.m; sourceTree = "<group>"; };
 		C3ADEF131667D3A1006FA274 /* StatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewController.xib; sourceTree = "<group>"; };
+		C3C8EC0E167F5DAD0003C192 /* FlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipView.h; sourceTree = "<group>"; };
+		C3C8EC0F167F5DAD0003C192 /* FlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipView.m; sourceTree = "<group>"; };
+		C3C8EC11167F5E9A0003C192 /* tobias.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tobias.jpg; sourceTree = "<group>"; };
+		C3C8EC19167F79290003C192 /* tobias2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tobias2.jpg; sourceTree = "<group>"; };
+		C3C8EC1B167F84E80003C192 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C3C8EC25167F9A4F0003C192 /* list-item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-item.png"; sourceTree = "<group>"; };
+		C3C8EC26167F9A4F0003C192 /* list-item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-item@2x.png"; sourceTree = "<group>"; };
+		C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewControllerIpad.xib; sourceTree = "<group>"; };
+		C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipContainerView.h; sourceTree = "<group>"; };
+		C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipContainerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3C8EC1C167F84E80003C192 /* QuartzCore.framework in Frameworks */,
 				C3A57CF61667E2A600FC8167 /* Cameo.framework in Frameworks */,
 				C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */,
 				C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */,
@@ -165,6 +209,12 @@
 				C2716CEB165EDCC800ED24C2 /* main.m */,
 				C3ADEF0C1667D375006FA274 /* StatusViewController.h */,
 				C3ADEF0D1667D375006FA274 /* StatusViewController.m */,
+				C34E677A167F4E37006A46C3 /* ServersViewController.h */,
+				C34E677B167F4E37006A46C3 /* ServersViewController.m */,
+				C3C8EC0E167F5DAD0003C192 /* FlipView.h */,
+				C3C8EC0F167F5DAD0003C192 /* FlipView.m */,
+				C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */,
+				C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */,
 			);
 			name = classes;
 			path = src/classes;
@@ -222,6 +272,7 @@
 		C39A2556165EB20800F0E242 = {
 			isa = PBXGroup;
 			children = (
+				C3C8EC1B167F84E80003C192 /* QuartzCore.framework */,
 				C2716CE7165EDCB800ED24C2 /* Pingu */,
 				C39A2564165EB20900F0E242 /* Frameworks */,
 				C39A2562165EB20900F0E242 /* Products */,
@@ -250,6 +301,10 @@
 		C3A57CD31667D62A00FC8167 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C3C8EC25167F9A4F0003C192 /* list-item.png */,
+				C3C8EC26167F9A4F0003C192 /* list-item@2x.png */,
+				C3C8EC19167F79290003C192 /* tobias2.jpg */,
+				C3C8EC11167F5E9A0003C192 /* tobias.jpg */,
 				C3A57D031667E56700FC8167 /* button-back-blue-pressed.png */,
 				C3A57D041667E56700FC8167 /* button-back-blue-pressed@2x.png */,
 				C3A57D051667E56700FC8167 /* button-back-blue-small-pressed.png */,
@@ -266,6 +321,14 @@
 				C3A57D101667E56800FC8167 /* button-blue-small@2x.png */,
 				C3A57D111667E56800FC8167 /* button-blue.png */,
 				C3A57D121667E56800FC8167 /* button-blue@2x.png */,
+				C34E6762167F4D19006A46C3 /* chart-lines-ipad.png */,
+				C34E6763167F4D19006A46C3 /* chart-lines-ipad@2x.png */,
+				C34E6764167F4D19006A46C3 /* chart-lines.png */,
+				C34E6765167F4D19006A46C3 /* chart-lines@2x.png */,
+				C34E6766167F4D19006A46C3 /* chart-round-ipad.png */,
+				C34E6767167F4D19006A46C3 /* chart-round-ipad@2x.png */,
+				C34E6768167F4D19006A46C3 /* chart-round.png */,
+				C34E6769167F4D19006A46C3 /* chart-round@2x.png */,
 				C3A57CDD1667DF3700FC8167 /* header-background-small.png */,
 				C3A57CDE1667DF3700FC8167 /* header-background-small@2x.png */,
 				C3A57CDF1667DF3700FC8167 /* header-background.png */,
@@ -280,6 +343,8 @@
 				C3A57D001667E3FD00FC8167 /* logo@2x.png */,
 				C3A57CD41667D62A00FC8167 /* main-background.png */,
 				C3A57CD51667D62A00FC8167 /* main-background@2x.png */,
+				C34E676A167F4D19006A46C3 /* panels-ipad.png */,
+				C34E676B167F4D19006A46C3 /* panels-ipad@2x.png */,
 				C3A57CE91667E03700FC8167 /* panels.png */,
 				C3A57CEA1667E03700FC8167 /* panels@2x.png */,
 			);
@@ -297,6 +362,8 @@
 		C3ADEF121667D3A1006FA274 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */,
+				C34E677F167F4E4C006A46C3 /* ServersViewController.xib */,
 				C3ADEF131667D3A1006FA274 /* StatusViewController.xib */,
 			);
 			name = views;
@@ -403,6 +470,22 @@
 				C3A57D201667E56800FC8167 /* button-blue-small@2x.png in Resources */,
 				C3A57D211667E56800FC8167 /* button-blue.png in Resources */,
 				C3A57D221667E56800FC8167 /* button-blue@2x.png in Resources */,
+				C34E676C167F4D19006A46C3 /* chart-lines-ipad.png in Resources */,
+				C34E676D167F4D19006A46C3 /* chart-lines-ipad@2x.png in Resources */,
+				C34E676E167F4D19006A46C3 /* chart-lines.png in Resources */,
+				C34E676F167F4D19006A46C3 /* chart-lines@2x.png in Resources */,
+				C34E6770167F4D19006A46C3 /* chart-round-ipad.png in Resources */,
+				C34E6771167F4D19006A46C3 /* chart-round-ipad@2x.png in Resources */,
+				C34E6772167F4D19006A46C3 /* chart-round.png in Resources */,
+				C34E6773167F4D19006A46C3 /* chart-round@2x.png in Resources */,
+				C34E6774167F4D19006A46C3 /* panels-ipad.png in Resources */,
+				C34E6775167F4D19006A46C3 /* panels-ipad@2x.png in Resources */,
+				C34E6780167F4E4C006A46C3 /* ServersViewController.xib in Resources */,
+				C3C8EC12167F5E9A0003C192 /* tobias.jpg in Resources */,
+				C3C8EC1A167F79290003C192 /* tobias2.jpg in Resources */,
+				C3C8EC27167F9A4F0003C192 /* list-item.png in Resources */,
+				C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */,
+				C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +499,9 @@
 				C2716D01165EDCC800ED24C2 /* AppDelegate.m in Sources */,
 				C2716D02165EDCC800ED24C2 /* main.m in Sources */,
 				C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */,
+				C34E677D167F4E37006A46C3 /* ServersViewController.m in Sources */,
+				C3C8EC10167F5DAD0003C192 /* FlipView.m in Sources */,
+				C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
