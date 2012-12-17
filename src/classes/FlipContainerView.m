@@ -35,6 +35,9 @@
 }
 
 - (void)addFlipView:(FlipView *)flipView {
+    for(int index  = 0; index < [self.flipViews count]; index++) {
+        NSLog(@"flip view");
+    }
 }
 
 - (void)doLayout {
