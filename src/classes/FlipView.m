@@ -32,6 +32,12 @@
     if(self) {
         self.up = NO;
         self.enabled = NO;
+        self.currentView = nil;
+        
+        self.contentMode = UIViewContentModeScaleToFill;
+        self.autoresizesSubviews = YES;
+        
+        self.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
         self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
@@ -44,14 +50,21 @@
     if(self) {
         self.up = NO;
         self.enabled = NO;
+        self.currentView = nil;
     }
     return self;
 }
 
 - (void)enable {
     if(self.enabled) { return; }
-    
+
+    self.frontView.hidden = YES;
+    self.backView.hidden = YES;
     [self addSubview:self.frontView];
+    [self addSubview:self.backView];
+    self.currentView = self.frontView;
+    self.currentView.hidden = NO;
+
     self.enabled = YES;
 }
 
@@ -71,18 +84,27 @@
 - (void)bringUp {
     if(self.up) { return; }
     
-    [self.frontView removeFromSuperview];
-    [UIView beginAnimations:nil context:NULL];
+    self.currentView.hidden = YES;
+    self.currentView = self.backView;
+
+    float width = 640;
+    float height = 640;
+    float x = self.superview.frame.size.width / 2.0f - width / 2.0f;
+    float y = self.superview.frame.size.height / 2.0f - height / 2.0f;
+    CGRect frame = CGRectMake(x, y, width, height);
     
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.5];
     
-    [UIView setAnimationDuration:1.0];
-    CGAffineTransform transform = CGAffineTransformMakeScale(1.2, 1.2);
-    self.transform = transform;
+    [self setFrame:frame withRatio:0.15];    
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
+                           forView:self
+                             cache:YES];
     
     [UIView commitAnimations];
-    [self addSubview:self.backView];
+    
+    self.currentView.hidden = NO;
     
     self.up = YES;
 }
@@ -90,27 +112,63 @@
 - (void)bringDown {
     if(!self.up) { return; }
     
-    [self.backView removeFromSuperview];
-    [UIView beginAnimations:nil context:NULL];
+    self.currentView.hidden = YES;
+    self.currentView = self.frontView;
     
-    [UIView setAnimationDuration:1.0];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self cache:YES];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationDuration:0.5];
     
-    [UIView setAnimationDuration:1.0];
-    CGAffineTransform transform = CGAffineTransformMakeScale(1, 1);
-    self.transform = transform;
+    [self setFrame:self.baseFrame withRatio:0.75];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
+                           forView:self
+                             cache:YES];
     
     [UIView commitAnimations];
-    [self addSubview:self.frontView];
+    
+    self.currentView.hidden = NO;
     
     self.up = NO;
 }
 
-- (void)setFrame:(CGRect)frame {
-    [super setFrame:frame];
+- (void)setFrame:(CGRect)frame withRatio:(float)ratio {
+    float width = frame.size.width * (ratio + 1.0);
+    float height = frame.size.height * (ratio + 1.0);
+    float xOffset = frame.size.width * (ratio / 2.0);
+    float yOffset = frame.size.height * (ratio / 2.0);
+    
+    [super setFrame:CGRectMake(
+        frame.origin.x - xOffset, frame.origin.y - yOffset, width, height
+    )];
+}
+
+- (void)setInnerFrame:(CGRect)frame withRatio:(float)ratio {
+    float xOffset = frame.size.width * (ratio / 2.0);
+    float yOffset = frame.size.height * (ratio / 2.0);
+    
     self.frontView.frame = CGRectMake(
-        0, 0, frame.size.width, frame.size.height
+        xOffset, yOffset, frame.size.width, frame.size.height
     );
+    self.backView.frame = CGRectMake(
+        xOffset, yOffset, frame.size.width, frame.size.height
+    );
+}
+
+- (void)setFrontView:(UIView *)frontView {
+    _frontView = frontView;
+    _frontView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    if(self.currentView == nil) { self.currentView = frontView; }
+}
+
+- (void)setBackView:(UIView *)frontView {
+    _backView = frontView;
+    _backView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+}
+
+- (void)setBaseFrame:(CGRect)baseFrame {
+    _baseFrame = baseFrame;
+    [self setFrame:baseFrame withRatio:0.75];
+    [self setInnerFrame:baseFrame withRatio:0.75];
 }
 
 @end

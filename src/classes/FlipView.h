@@ -30,8 +30,10 @@
 
 @property (nonatomic) bool up;
 @property (nonatomic) bool enabled;
+@property (nonatomic) UIView *currentView;
 @property (nonatomic) UIView *frontView;
 @property (nonatomic) UIView *backView;
+@property (nonatomic) CGRect baseFrame;
 
 - (void)enable;
 - (void)disable;

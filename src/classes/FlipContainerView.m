@@ -40,7 +40,7 @@
         self.flipViews = [[NSMutableArray alloc] init];
         
         [self addSubview:_scrollView];
-        [self addSubview:_overlay];
+        [_scrollView addSubview:_overlay];
     }
     return self;
 }
@@ -58,7 +58,7 @@
         self.flipViews = [[NSMutableArray alloc] init];
 
         [self addSubview:_scrollView];
-        [self addSubview:_overlay];
+        [_scrollView addSubview:_overlay];
     }
     return self;
 }
@@ -80,7 +80,7 @@
     
     for(int index  = 0; index < items; index++) {
         FlipView *flipView = [self.flipViews objectAtIndex:index];
-        flipView.frame = CGRectMake(68 * index, 0, 60, 60);
+        flipView.baseFrame = CGRectMake(index * 138, 0, 128, 128);
         [flipView enable];
     }
 }
@@ -88,7 +88,26 @@
 - (void)flipViewClick:(id)sender {
     UITapGestureRecognizer *recognizer = (UITapGestureRecognizer *) sender;
     FlipView *flipView = (FlipView *) recognizer.view;
-    [flipView toggle];
+    
+    if(flipView.up) {
+        [_scrollView bringSubviewToFront:_overlay];
+        [_scrollView bringSubviewToFront:flipView];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.5];
+        _overlay.alpha = 0.0;
+        [UIView commitAnimations];
+        [flipView bringDown];
+    } else {
+        [_scrollView bringSubviewToFront:_overlay];
+        [_scrollView bringSubviewToFront:flipView];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationDuration:0.5];
+        _overlay.alpha = 0.6;
+        [UIView commitAnimations];
+        [flipView bringUp];
+    }
 }
 
 @end

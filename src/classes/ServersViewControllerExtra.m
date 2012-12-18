@@ -49,9 +49,17 @@
     
     FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
     FlipView *flipView2 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    FlipView *flipView3 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    FlipView *flipView4 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    FlipView *flipView5 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    FlipView *flipView6 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
     
     [self.flipContainer addFlipView:flipView];
     [self.flipContainer addFlipView:flipView2];
+    [self.flipContainer addFlipView:flipView3];
+    [self.flipContainer addFlipView:flipView4];
+    [self.flipContainer addFlipView:flipView5];
+    [self.flipContainer addFlipView:flipView6];
 }
 
 - (void)didReceiveMemoryWarning {

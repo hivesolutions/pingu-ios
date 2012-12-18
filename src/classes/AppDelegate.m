@@ -67,13 +67,12 @@
         
         // creates the servers view controller as the "main" view controller
         // to be used by the application
-        ServersViewControllerExtra *serversViewControllerExtra = [[ServersViewControllerExtra alloc] initWithNibName:@"ServersViewControllerExtra" bundle:nil];
-        
-        
+        ServersViewControllerExtra *serversViewController = [[ServersViewControllerExtra alloc] initWithNibName:@"ServersViewControllerExtra" bundle:nil];
+    
         // creates the naviation controller to be used for the controll
         // of the various navigation controller and sets it as the root
         // view controller for the current main window
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewControllerExtra];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewController];
         self.window.rootViewController = navigationController;
     }
 
