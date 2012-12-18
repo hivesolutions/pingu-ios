@@ -23,20 +23,39 @@
 // __copyright__ = Copyright (c) 2008-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
-#import "Dependencies.h"
+#import "ServersViewControllerExtra.h"
 
-@interface FlipView : UIView {
+@implementation ServersViewControllerExtra
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self) {
+        self.title = @"Servers";
+    }
+    return self;
 }
 
-@property (nonatomic) bool up;
-@property (nonatomic) bool enabled;
-@property (nonatomic) UIView *frontView;
-@property (nonatomic) UIView *backView;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    // creates the patter image to be used for the view background,
+    // should be set as a pattern
+    UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
+}
 
-- (void)enable;
-- (void)disable;
-- (void)toggle;
-- (void)bringUp;
-- (void)bringDown;
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    FlipView *flipView2 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+    
+    [self.flipContainer addFlipView:flipView];
+    [self.flipContainer addFlipView:flipView2];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 
 @end

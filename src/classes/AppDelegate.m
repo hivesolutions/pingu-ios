@@ -28,6 +28,11 @@
 #import "StatusViewController.h"
 #import "ServersViewController.h"
 
+
+
+
+#import "ServersViewControllerExtra.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -58,12 +63,17 @@
     } else {
         // creates the servers view controller as the "main" view controller
         // to be used by the application
-        ServersViewController *serversViewController = [[ServersViewController alloc] initWithNibName:@"ServersViewController" bundle:nil];
+        //ServersViewController *serversViewController = [[ServersViewController alloc] initWithNibName:@"ServersViewController" bundle:nil];
+        
+        // creates the servers view controller as the "main" view controller
+        // to be used by the application
+        ServersViewControllerExtra *serversViewControllerExtra = [[ServersViewControllerExtra alloc] initWithNibName:@"ServersViewControllerExtra" bundle:nil];
+        
         
         // creates the naviation controller to be used for the controll
         // of the various navigation controller and sets it as the root
         // view controller for the current main window
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewController];
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewControllerExtra];
         self.window.rootViewController = navigationController;
     }
 

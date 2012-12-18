@@ -82,6 +82,8 @@
 		C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC26167F9A4F0003C192 /* list-item@2x.png */; };
 		C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */; };
 		C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */; };
+		C3FCC8D316808C7E00F10278 /* ServersViewControllerExtra.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */; };
+		C3FCC8D616808CB100F10278 /* ServersViewControllerExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +172,9 @@
 		C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewControllerIpad.xib; sourceTree = "<group>"; };
 		C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipContainerView.h; sourceTree = "<group>"; };
 		C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipContainerView.m; sourceTree = "<group>"; };
+		C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewControllerExtra.xib; sourceTree = "<group>"; };
+		C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewControllerExtra.h; sourceTree = "<group>"; };
+		C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewControllerExtra.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +208,8 @@
 		C2716CE8165EDCC800ED24C2 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */,
+				C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */,
 				C2716CE9165EDCC800ED24C2 /* AppDelegate.h */,
 				C2716CEA165EDCC800ED24C2 /* AppDelegate.m */,
 				C2716D1A165EDE6600ED24C2 /* Dependencies.h */,
@@ -362,6 +369,7 @@
 		C3ADEF121667D3A1006FA274 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */,
 				C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */,
 				C34E677F167F4E4C006A46C3 /* ServersViewController.xib */,
 				C3ADEF131667D3A1006FA274 /* StatusViewController.xib */,
@@ -486,6 +494,7 @@
 				C3C8EC27167F9A4F0003C192 /* list-item.png in Resources */,
 				C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */,
 				C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */,
+				C3FCC8D316808C7E00F10278 /* ServersViewControllerExtra.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +511,7 @@
 				C34E677D167F4E37006A46C3 /* ServersViewController.m in Sources */,
 				C3C8EC10167F5DAD0003C192 /* FlipView.m in Sources */,
 				C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */,
+				C3FCC8D616808CB100F10278 /* ServersViewControllerExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

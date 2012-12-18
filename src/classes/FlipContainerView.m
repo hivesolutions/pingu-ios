@@ -29,10 +29,12 @@
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
+    if(self) {
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithFrame:frame];
+        _overlay.alpha = 0.0;
+        _overlay.backgroundColor = [UIColor blackColor];
         _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         self.flipViews = [[NSMutableArray alloc] init];
@@ -49,10 +51,12 @@
         _scrollView = [[UIScrollView alloc] initWithCoder:aDecoder];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithCoder:aDecoder];
+        _overlay.alpha = 0.0;
+        _overlay.backgroundColor = [UIColor blackColor];
         _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         self.flipViews = [[NSMutableArray alloc] init];
-        
+
         [self addSubview:_scrollView];
         [self addSubview:_overlay];
     }
@@ -63,13 +67,28 @@
     [self.flipViews addObject:flipView];
     [_scrollView addSubview:flipView];
     
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(flipViewClick:)];
+    flipView.userInteractionEnabled = YES;
+    [flipView addGestureRecognizer:tapRecognizer];
+    
     [self doLayout];
 }
 
 - (void)doLayout {
-    for(int index  = 0; index < [self.flipViews count]; index++) {
-        NSLog(@"flip view");
+    int items = [self.flipViews count];
+    
+    for(int index  = 0; index < items; index++) {
+        FlipView *flipView = [self.flipViews objectAtIndex:index];
+        flipView.frame = CGRectMake(68 * index, 0, 60, 60);
+        [flipView enable];
     }
+}
+
+- (void)flipViewClick:(id)sender {
+    UITapGestureRecognizer *recognizer = (UITapGestureRecognizer *) sender;
+    FlipView *flipView = (FlipView *) recognizer.view;
+    [flipView toggle];
 }
 
 @end

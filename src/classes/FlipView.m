@@ -29,13 +29,49 @@
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
+    if(self) {
+        self.up = NO;
+        self.enabled = NO;
+        
+        self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
+        self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
     }
     return self;
 }
 
-- (void)turnUp {
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        self.up = NO;
+        self.enabled = NO;
+    }
+    return self;
+}
+
+- (void)enable {
+    if(self.enabled) { return; }
+    
+    [self addSubview:self.frontView];
+    self.enabled = YES;
+}
+
+- (void)disable {
+    if(!self.enabled) { return; }
+    
+    [self.frontView removeFromSuperview];
     [self.backView removeFromSuperview];
+    self.enabled = NO;
+}
+
+- (void)toggle {
+    if(self.up) { [self bringDown]; }
+    else { [self bringUp]; }
+}
+
+- (void)bringUp {
+    if(self.up) { return; }
+    
+    [self.frontView removeFromSuperview];
     [UIView beginAnimations:nil context:NULL];
     
     [UIView setAnimationDuration:1.0];
@@ -46,11 +82,15 @@
     self.transform = transform;
     
     [UIView commitAnimations];
-    [self addSubview:self.frontView];
+    [self addSubview:self.backView];
+    
+    self.up = YES;
 }
 
-- (void)turnDown {
-    [self.frontView removeFromSuperview];
+- (void)bringDown {
+    if(!self.up) { return; }
+    
+    [self.backView removeFromSuperview];
     [UIView beginAnimations:nil context:NULL];
     
     [UIView setAnimationDuration:1.0];
@@ -61,7 +101,16 @@
     self.transform = transform;
     
     [UIView commitAnimations];
-    [self addSubview:self.backView];
+    [self addSubview:self.frontView];
+    
+    self.up = NO;
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    self.frontView.frame = CGRectMake(
+        0, 0, frame.size.width, frame.size.height
+    );
 }
 
 @end

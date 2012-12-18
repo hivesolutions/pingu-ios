@@ -25,18 +25,12 @@
 
 #import "Dependencies.h"
 
-@interface FlipView : UIView {
+#import "StatusViewController.h"
+#import "FlipContainerView.h"
+
+@interface ServersViewControllerExtra : UIViewController {
 }
 
-@property (nonatomic) bool up;
-@property (nonatomic) bool enabled;
-@property (nonatomic) UIView *frontView;
-@property (nonatomic) UIView *backView;
-
-- (void)enable;
-- (void)disable;
-- (void)toggle;
-- (void)bringUp;
-- (void)bringDown;
+@property (nonatomic) IBOutlet FlipContainerView *flipContainer;
 
 @end
