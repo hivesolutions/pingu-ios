@@ -52,11 +52,14 @@
 - (void)turnDown {
     [self.frontView removeFromSuperview];
     [UIView beginAnimations:nil context:NULL];
+    
     [UIView setAnimationDuration:1.0];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self cache:YES];
+    
     [UIView setAnimationDuration:1.0];
     CGAffineTransform transform = CGAffineTransformMakeScale(1, 1);
     self.transform = transform;
+    
     [UIView commitAnimations];
     [self addSubview:self.backView];
 }

@@ -28,6 +28,9 @@
 #import "FlipView.h"
 
 @interface FlipContainerView : UIView {
+    @private
+    UIScrollView *_scrollView;
+    UIView *_overlay;
 }
 
 @property (nonatomic) NSMutableArray *flipViews;

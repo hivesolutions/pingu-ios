@@ -30,17 +30,46 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:frame];
+        _scrollView.scrollEnabled = YES;
+        _overlay = [[UIScrollView alloc] initWithFrame:frame];
+        _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        self.flipViews = [[NSMutableArray alloc] init];
+        
+        [self addSubview:_scrollView];
+        [self addSubview:_overlay];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        _scrollView = [[UIScrollView alloc] initWithCoder:aDecoder];
+        _scrollView.scrollEnabled = YES;
+        _overlay = [[UIScrollView alloc] initWithCoder:aDecoder];
+        _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        self.flipViews = [[NSMutableArray alloc] init];
+        
+        [self addSubview:_scrollView];
+        [self addSubview:_overlay];
     }
     return self;
 }
 
 - (void)addFlipView:(FlipView *)flipView {
-    for(int index  = 0; index < [self.flipViews count]; index++) {
-        NSLog(@"flip view");
-    }
+    [self.flipViews addObject:flipView];
+    [_scrollView addSubview:flipView];
+    
+    [self doLayout];
 }
 
 - (void)doLayout {
+    for(int index  = 0; index < [self.flipViews count]; index++) {
+        NSLog(@"flip view");
+    }
 }
 
 @end
