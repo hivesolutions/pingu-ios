@@ -39,28 +39,36 @@
     // them to the expected behavior
     [self setLayout];
     
-    
-    
+    // creates a new window to hold the various views that will compose
+    // the complete application, this is the many entry point for them
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-
+    // checks if the current device is of type phone and in such case starts
+    // the required structures for it
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         // creates the status view controller as the "main" view controller
         // to be used by the application
         StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewController" bundle:nil];
     
         // creates the naviation controller to be used for the controll
-        // of the various navigation controller
+        // of the various navigation controller and sets it as the root
+        // view controller for the current main window
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:statusViewController];
-        
         self.window.rootViewController = navigationController;
     } else {
+        // creates the servers view controller as the "main" view controller
+        // to be used by the application
         ServersViewController *serversViewController = [[ServersViewController alloc] initWithNibName:@"ServersViewController" bundle:nil];
+        
+        // creates the naviation controller to be used for the controll
+        // of the various navigation controller and sets it as the root
+        // view controller for the current main window
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:serversViewController];
-
         self.window.rootViewController = navigationController;
     }
 
+    // makes the just created window as the top level element for the current device
+    // this should bring the interface up to the screen
     [self.window makeKeyAndVisible];
     
     // returns success, application started with success
