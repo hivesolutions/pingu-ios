@@ -27,6 +27,10 @@
 
 @implementation FlipContainerView
 
+static int itemWidth = 128;
+static int itemHeight = 128;
+static int itemMargin = 10;
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
@@ -66,11 +70,8 @@
 - (void)addFlipView:(FlipView *)flipView {
     [self.flipViews addObject:flipView];
     [_scrollView addSubview:flipView];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                    action:@selector(flipViewClick:)];
-    flipView.userInteractionEnabled = YES;
-    [flipView addGestureRecognizer:tapRecognizer];
+
+    flipView.delegate = self;
     
     [self doLayout];
 }
@@ -80,18 +81,15 @@
     
     for(int index  = 0; index < items; index++) {
         FlipView *flipView = [self.flipViews objectAtIndex:index];
-        flipView.baseFrame = CGRectMake(index * 138, 0, 128, 128);
+        flipView.baseFrame = CGRectMake(index * (itemWidth + itemMargin), 0, itemWidth, itemHeight);
         [flipView enable];
     }
 }
 
-- (void)flipViewClick:(id)sender {
-    UITapGestureRecognizer *recognizer = (UITapGestureRecognizer *) sender;
-    FlipView *flipView = (FlipView *) recognizer.view;
+- (void)didTap:(id)sender {
+    FlipView *flipView = (FlipView *) sender;
     
     if(flipView.up) {
-        [_scrollView bringSubviewToFront:_overlay];
-        [_scrollView bringSubviewToFront:flipView];
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [UIView setAnimationDuration:0.5];

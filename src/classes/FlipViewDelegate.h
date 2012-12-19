@@ -25,23 +25,14 @@
 
 #import "Dependencies.h"
 
-#import "FlipViewDelegate.h"
+@class FlipView;
 
-@interface FlipView : UIView {
-}
+@protocol FlipViewDelegate<NSObject>
 
-@property (nonatomic) bool up;
-@property (nonatomic) bool enabled;
-@property (nonatomic) UIView *currentView;
-@property (nonatomic) UIView *frontView;
-@property (nonatomic) UIView *backView;
-@property (nonatomic) CGRect baseFrame;
-@property (nonatomic, weak) NSObject<FlipViewDelegate> *delegate;
+@optional
 
-- (void)enable;
-- (void)disable;
-- (void)toggle;
-- (void)bringUp;
-- (void)bringDown;
+- (void)didTap:(FlipView *)flipView;
+- (void)didTapFront:(FlipView *)flipView;
+- (void)didTapBack:(FlipView *)flipView;
 
 @end

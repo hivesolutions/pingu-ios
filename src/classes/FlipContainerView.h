@@ -26,8 +26,9 @@
 #import "Dependencies.h"
 
 #import "FlipView.h"
+#import "FlipViewDelegate.h"
 
-@interface FlipContainerView : UIView {
+@interface FlipContainerView : UIView<FlipViewDelegate> {
     @private
     UIScrollView *_scrollView;
     UIView *_overlay;

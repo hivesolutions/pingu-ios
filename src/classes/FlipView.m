@@ -27,17 +27,15 @@
 
 @implementation FlipView
 
+static int frontViewWidth = 640;
+static int frontViewHeight = 640;
+
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.up = NO;
         self.enabled = NO;
         self.currentView = nil;
-        
-        self.contentMode = UIViewContentModeScaleToFill;
-        self.autoresizesSubviews = YES;
-        
-        self.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
         self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
@@ -87,8 +85,8 @@
     self.currentView.hidden = YES;
     self.currentView = self.backView;
 
-    float width = 640;
-    float height = 640;
+    float width = frontViewWidth;
+    float height = frontViewHeight;
     float x = self.superview.frame.size.width / 2.0f - width / 2.0f;
     float y = self.superview.frame.size.height / 2.0f - height / 2.0f;
     CGRect frame = CGRectMake(x, y, width, height);
@@ -105,7 +103,6 @@
     [UIView commitAnimations];
     
     self.currentView.hidden = NO;
-    
     self.up = YES;
 }
 
@@ -127,8 +124,25 @@
     [UIView commitAnimations];
     
     self.currentView.hidden = NO;
-    
     self.up = NO;
+}
+
+- (void)frontViewClick:(id)sender {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTap:)]) {
+        [self.delegate didTap:self];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTapFront:)]) {
+        [self.delegate didTapFront:self];
+    }
+}
+
+- (void)backViewClick:(id)sender {
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTap:)]) {
+        [self.delegate didTap:self];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didTapBack:)]) {
+        [self.delegate didTapBack:self];
+    }
 }
 
 - (void)setFrame:(CGRect)frame withRatio:(float)ratio {
@@ -154,21 +168,29 @@
     );
 }
 
+- (void)setBaseFrame:(CGRect)baseFrame {
+    _baseFrame = baseFrame;
+    [self setFrame:baseFrame withRatio:0.75];
+    [self setInnerFrame:baseFrame withRatio:0.75];
+}
+
 - (void)setFrontView:(UIView *)frontView {
     _frontView = frontView;
+    _frontView.userInteractionEnabled = YES;
     _frontView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(frontViewClick:)];
+    [_frontView addGestureRecognizer:recognizer];
     if(self.currentView == nil) { self.currentView = frontView; }
 }
 
 - (void)setBackView:(UIView *)frontView {
     _backView = frontView;
+    _backView.userInteractionEnabled = YES;
     _backView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-}
-
-- (void)setBaseFrame:(CGRect)baseFrame {
-    _baseFrame = baseFrame;
-    [self setFrame:baseFrame withRatio:0.75];
-    [self setInnerFrame:baseFrame withRatio:0.75];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                 action:@selector(backViewClick:)];
+    [_backView addGestureRecognizer:recognizer];
 }
 
 @end

@@ -172,6 +172,7 @@
 		C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusViewControllerIpad.xib; sourceTree = "<group>"; };
 		C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipContainerView.h; sourceTree = "<group>"; };
 		C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipContainerView.m; sourceTree = "<group>"; };
+		C3EB7A0A1681D2350057A023 /* FlipViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipViewDelegate.h; sourceTree = "<group>"; };
 		C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewControllerExtra.xib; sourceTree = "<group>"; };
 		C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewControllerExtra.h; sourceTree = "<group>"; };
 		C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewControllerExtra.m; sourceTree = "<group>"; };
@@ -208,20 +209,21 @@
 		C2716CE8165EDCC800ED24C2 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */,
-				C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */,
 				C2716CE9165EDCC800ED24C2 /* AppDelegate.h */,
 				C2716CEA165EDCC800ED24C2 /* AppDelegate.m */,
 				C2716D1A165EDE6600ED24C2 /* Dependencies.h */,
-				C2716CEB165EDCC800ED24C2 /* main.m */,
-				C3ADEF0C1667D375006FA274 /* StatusViewController.h */,
-				C3ADEF0D1667D375006FA274 /* StatusViewController.m */,
-				C34E677A167F4E37006A46C3 /* ServersViewController.h */,
-				C34E677B167F4E37006A46C3 /* ServersViewController.m */,
-				C3C8EC0E167F5DAD0003C192 /* FlipView.h */,
-				C3C8EC0F167F5DAD0003C192 /* FlipView.m */,
 				C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */,
 				C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */,
+				C3C8EC0E167F5DAD0003C192 /* FlipView.h */,
+				C3C8EC0F167F5DAD0003C192 /* FlipView.m */,
+				C3EB7A0A1681D2350057A023 /* FlipViewDelegate.h */,
+				C2716CEB165EDCC800ED24C2 /* main.m */,
+				C34E677A167F4E37006A46C3 /* ServersViewController.h */,
+				C34E677B167F4E37006A46C3 /* ServersViewController.m */,
+				C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */,
+				C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */,
+				C3ADEF0C1667D375006FA274 /* StatusViewController.h */,
+				C3ADEF0D1667D375006FA274 /* StatusViewController.m */,
 			);
 			name = classes;
 			path = src/classes;
