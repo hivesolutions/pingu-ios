@@ -43,5 +43,6 @@
 - (void)toggle;
 - (void)bringUp;
 - (void)bringDown;
+- (void)doLayout;
 
 @end

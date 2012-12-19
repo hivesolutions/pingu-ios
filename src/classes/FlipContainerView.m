@@ -29,7 +29,10 @@
 
 static int itemWidth = 128;
 static int itemHeight = 128;
-static int itemMargin = 10;
+static int itemHPMargin = 22;
+static int itemHLMargin = 42;
+static int itemVPMargin = 32;
+static int itemVLMargin = 32;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -77,13 +80,72 @@ static int itemMargin = 10;
 }
 
 - (void)doLayout {
-    int items = [self.flipViews count];
+    // retrieves the current device orientation and checks if its of type
+    // landscape in order to correctly retrieve the correct measures
+    UIInterfaceOrientation orientation = [UIDevice currentDevice].orientation;
+    bool isLandscape = UIDeviceOrientationIsLandscape(orientation);
     
-    for(int index  = 0; index < items; index++) {
-        FlipView *flipView = [self.flipViews objectAtIndex:index];
-        flipView.baseFrame = CGRectMake(index * (itemWidth + itemMargin), 0, itemWidth, itemHeight);
+    // retrieves the scroll view with as the with to be used
+    // in a per page basis
+    CGFloat pageWidth = _scrollView.frame.size.width;
+    
+    CGFloat itemHMargin = isLandscape ? itemHLMargin : itemHPMargin;
+    CGFloat itemVMargin = isLandscape ? itemVLMargin : itemVPMargin;
+    
+    // calculates the total width and height for the items
+    // to be drawn in the target area
+    CGFloat itemTWidth = itemWidth + itemHMargin;
+    CGFloat itemTHeight = itemHeight + itemVMargin;
+    
+    // calculates the various intermediate values to be used
+    // in the render operation of each of the items
+    int items = [self.flipViews count];
+    int itemsLine = (int) floor(pageWidth / itemTWidth);
+    int extraWidth = pageWidth - (itemsLine * itemTWidth - itemHMargin);
+    int extraPadding = (int) round((float) extraWidth / 2.0f);
+    int numberRows = (int) ceil((float) items / (float) itemsLine);
+    
+    // updates the content size of the scroll view with the current width
+    // (not changing it) and the heigth with enough room for the complete
+    // set of element in the mosaic
+    _scrollView.contentSize = CGSizeMake(
+        _scrollView.frame.size.width, numberRows * itemTHeight + itemVMargin
+    );
+
+    // starts the line counter in minus one so that the
+    // initial modulus opertion puts it in zero
+    int line = -1;
+    
+    // iterates over all the current flip views in order to
+    // correctly position them in the current panel
+    for(int index = 0; index < items; index++) {
+        // calculates the horizontal offset index of the current
+        // item by using the current index and the items (per)
+        // line value in a modulus operation
+        int offset = index % itemsLine;
+        
+        // in case the current offset is zero (start of a line)
+        // the line counter must be incremented
+        if(offset == 0) { line++; }
+        
+        FlipView *flipView = self.flipViews[index];
+        flipView.baseFrame = CGRectMake(
+            extraPadding + itemTWidth * offset,
+            itemVMargin + itemTHeight * line - 12,
+            itemWidth,
+            itemHeight
+        );
         [flipView enable];
+        [flipView doLayout];
     }
+}
+
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    
+    // does the layout of the view
+    // in order to expand the option items
+    [self doLayout];
 }
 
 - (void)didTap:(id)sender {

@@ -39,6 +39,13 @@ static int frontViewHeight = 640;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
         self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
+    
+        // @TODO: replace this shadow with v-fcastro pre-rendered value
+        self.frontView.layer.masksToBounds = NO;
+        //self.frontView.layer.cornerRadius = 0; // if you like rounded corners
+        self.frontView.layer.shadowOffset = CGSizeMake(0, 2);
+        self.frontView.layer.shadowRadius = 2;
+        self.frontView.layer.shadowOpacity = 0.4;
     }
     return self;
 }
@@ -125,6 +132,18 @@ static int frontViewHeight = 640;
     
     self.currentView.hidden = NO;
     self.up = NO;
+}
+
+- (void)doLayout {
+    if(!self.up) { return; }
+    
+    float width = frontViewWidth;
+    float height = frontViewHeight;
+    float x = self.superview.frame.size.width / 2.0f - width / 2.0f;
+    float y = self.superview.frame.size.height / 2.0f - height / 2.0f;
+    CGRect frame = CGRectMake(x, y, width, height);
+    
+    [self setFrame:frame withRatio:0.15];
 }
 
 - (void)frontViewClick:(id)sender {
