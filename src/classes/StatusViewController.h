@@ -28,4 +28,11 @@
 @interface StatusViewController : UIViewController {
 }
 
+@property (nonatomic) IBOutlet UIView *topPanel;
+@property (nonatomic) IBOutlet UIView *bottomPanel;
+@property (nonatomic) IBOutlet UIView *leftPanel;
+@property (nonatomic) IBOutlet UIView *rightPanel;
+@property (nonatomic) IBOutlet UIView *shadowTop;
+@property (nonatomic) IBOutlet UIView *chart;
+
 @end

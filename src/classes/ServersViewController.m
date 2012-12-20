@@ -60,7 +60,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    for(int index = 0; index < 100; index++) {
+    for(int index = 0; index < 10; index++) {
         FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
         [self.flipContainer addFlipView:flipView];
     }

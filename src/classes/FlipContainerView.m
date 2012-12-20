@@ -113,7 +113,12 @@ static int itemVLMargin = 32;
         _scrollView.frame.size.width, numberRows * itemTHeight + itemVMargin
     );
     _overlay.frame = CGRectMake(
-        0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height
+        0,
+        0,
+        _scrollView.contentSize.width > self.frame.size.width ?
+            _scrollView.contentSize.width : self.frame.size.width,
+        _scrollView.contentSize.height > self.frame.size.height ?
+            _scrollView.contentSize.height : self.frame.size.height
     );
 
     // starts the line counter in minus one so that the

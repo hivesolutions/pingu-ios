@@ -25,6 +25,11 @@
 
 #import "FlipView.h"
 
+
+
+
+#import "StatusViewController.h"
+
 @implementation FlipView
 
 static int frontViewWidth = 640;
@@ -38,7 +43,10 @@ static int frontViewHeight = 640;
         self.currentView = nil;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
-        self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
+//        self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
+        
+        StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewControllerIpad" bundle:nil];
+        self.backView = statusViewController.view;
     }
     return self;
 }
@@ -59,7 +67,7 @@ static int frontViewHeight = 640;
     self.frontView.hidden = YES;
     self.backView.hidden = YES;
     [self addSubview:self.frontView];
-    [self addSubview:self.backView];
+    //[self addSubview:self.backView];
     self.currentView = self.frontView;
     self.currentView.hidden = NO;
 
@@ -79,11 +87,23 @@ static int frontViewHeight = 640;
     else { [self bringUp]; }
 }
 
+
+
+- (void)myAnimationStopped:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    self.backView.layer.masksToBounds = NO;
+    self.backView.layer.shouldRasterize = YES;
+    self.backView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.backView.layer.shadowRadius = 8.0;
+    self.backView.layer.shadowOpacity = 0.8;
+    self.backView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
 - (void)bringUp {
     if(self.up) { return; }
     
     self.currentView.hidden = YES;
     self.currentView = self.backView;
+    [self addSubview:self.currentView];
 
     float offsetX = 0.0f;
     float offsetY = 0.0f;
@@ -101,10 +121,11 @@ static int frontViewHeight = 640;
     CGRect frame = CGRectMake(x, y, width, height);
     
     [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(myAnimationStopped:finished:context:)];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.5];
-    
-    [self setFrame:frame withRatio:0.15];    
+    [self setFrame:frame withRatio:0.15];
     [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
                            forView:self
                              cache:YES];
@@ -117,10 +138,10 @@ static int frontViewHeight = 640;
 
 - (void)bringDown {
     if(!self.up) { return; }
-    
+
     self.currentView.hidden = YES;
     self.currentView = self.frontView;
-    
+
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.5];
@@ -131,9 +152,19 @@ static int frontViewHeight = 640;
                              cache:YES];
     
     [UIView commitAnimations];
-    
+
     self.currentView.hidden = NO;
     self.up = NO;
+    
+    
+    self.backView.layer.masksToBounds = NO;
+    self.backView.layer.shouldRasterize = NO;
+    self.backView.layer.shadowOffset = CGSizeMake(0, 0);
+    self.backView.layer.shadowRadius = 0.0;
+    self.backView.layer.shadowOpacity = 0.0;
+    self.backView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    [self.backView removeFromSuperview];
 }
 
 - (void)doLayout {
@@ -209,10 +240,10 @@ static int frontViewHeight = 640;
     _frontView.userInteractionEnabled = YES;
     _frontView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _frontView.layer.masksToBounds = NO;
-    _frontView.layer.shadowOffset = CGSizeMake(0, 2);
-    _frontView.layer.shadowRadius = 2;
-    _frontView.layer.shadowOpacity = 0.4;
     _frontView.layer.shouldRasterize = YES;
+    _frontView.layer.shadowOffset = CGSizeMake(0, 2);
+    _frontView.layer.shadowRadius = 2.0;
+    _frontView.layer.shadowOpacity = 0.4;
     _frontView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(frontViewClick:)];
@@ -220,8 +251,8 @@ static int frontViewHeight = 640;
     if(self.currentView == nil) { self.currentView = frontView; }
 }
 
-- (void)setBackView:(UIView *)frontView {
-    _backView = frontView;
+- (void)setBackView:(UIView *)backView {
+    _backView = backView;
     _backView.userInteractionEnabled = YES;
     _backView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
