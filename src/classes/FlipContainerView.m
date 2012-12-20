@@ -107,9 +107,13 @@ static int itemVLMargin = 32;
     
     // updates the content size of the scroll view with the current width
     // (not changing it) and the heigth with enough room for the complete
-    // set of element in the mosaic
+    // set of element in the mosaic, then updates the overlay size to reflect
+    // this change and cover the complete screen
     _scrollView.contentSize = CGSizeMake(
         _scrollView.frame.size.width, numberRows * itemTHeight + itemVMargin
+    );
+    _overlay.frame = CGRectMake(
+        0, 0, _scrollView.contentSize.width, _scrollView.contentSize.height
     );
 
     // starts the line counter in minus one so that the
@@ -158,6 +162,7 @@ static int itemVLMargin = 32;
         _overlay.alpha = 0.0;
         [UIView commitAnimations];
         [flipView bringDown];
+        _scrollView.scrollEnabled = YES;
     } else {
         [_scrollView bringSubviewToFront:_overlay];
         [_scrollView bringSubviewToFront:flipView];
@@ -167,6 +172,7 @@ static int itemVLMargin = 32;
         _overlay.alpha = 0.6;
         [UIView commitAnimations];
         [flipView bringUp];
+        _scrollView.scrollEnabled = NO;
     }
 }
 

@@ -30,7 +30,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self) {
-        self.title = @"Servers";
+        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo-menu.png"]];
+        self.navigationItem.titleView = titleView;
     }
     return self;
 }
@@ -42,24 +43,27 @@
     // should be set as a pattern
     UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"LogoutButtonTitle", @"Logout")
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(logoutClick:)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-refresh.png"]
+                                                        landscapeImagePhone:[UIImage imageNamed:@"icon-refresh-small.png"]
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(refreshClick:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
+    self.navigationItem.rightBarButtonItem = refreshButton;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    FlipView *flipView2 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    FlipView *flipView3 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    FlipView *flipView4 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    FlipView *flipView5 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    FlipView *flipView6 = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
-    
-    [self.flipContainer addFlipView:flipView];
-    [self.flipContainer addFlipView:flipView2];
-    [self.flipContainer addFlipView:flipView3];
-    [self.flipContainer addFlipView:flipView4];
-    [self.flipContainer addFlipView:flipView5];
-    [self.flipContainer addFlipView:flipView6];
+
+    for(int index = 0; index < 100; index++) {
+        FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+        [self.flipContainer addFlipView:flipView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -39,13 +39,6 @@ static int frontViewHeight = 640;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
         self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
-    
-        // @TODO: replace this shadow with v-fcastro pre-rendered value
-        self.frontView.layer.masksToBounds = NO;
-        //self.frontView.layer.cornerRadius = 0; // if you like rounded corners
-        self.frontView.layer.shadowOffset = CGSizeMake(0, 2);
-        self.frontView.layer.shadowRadius = 2;
-        self.frontView.layer.shadowOpacity = 0.4;
     }
     return self;
 }
@@ -92,10 +85,19 @@ static int frontViewHeight = 640;
     self.currentView.hidden = YES;
     self.currentView = self.backView;
 
+    float offsetX = 0.0f;
+    float offsetY = 0.0f;
+    
+    bool isScrollable = [self.superview isKindOfClass:[UIScrollView class]];
+    if(isScrollable) {
+        offsetX += ((UIScrollView *) self.superview).contentOffset.x;
+        offsetY += ((UIScrollView *) self.superview).contentOffset.y;
+    }
+    
     float width = frontViewWidth;
     float height = frontViewHeight;
-    float x = self.superview.frame.size.width / 2.0f - width / 2.0f;
-    float y = self.superview.frame.size.height / 2.0f - height / 2.0f;
+    float x = self.superview.frame.size.width / 2.0f - width / 2.0f + offsetX;
+    float y = self.superview.frame.size.height / 2.0f - height / 2.0f + offsetY;
     CGRect frame = CGRectMake(x, y, width, height);
     
     [UIView beginAnimations:nil context:nil];
@@ -136,11 +138,20 @@ static int frontViewHeight = 640;
 
 - (void)doLayout {
     if(!self.up) { return; }
+
+    float offsetX = 0.0f;
+    float offsetY = 0.0f;
+    
+    bool isScrollable = [self.superview isKindOfClass:[UIScrollView class]];
+    if(isScrollable) {
+        offsetX += ((UIScrollView *) self.superview).contentOffset.x;
+        offsetY += ((UIScrollView *) self.superview).contentOffset.y;
+    }
     
     float width = frontViewWidth;
     float height = frontViewHeight;
-    float x = self.superview.frame.size.width / 2.0f - width / 2.0f;
-    float y = self.superview.frame.size.height / 2.0f - height / 2.0f;
+    float x = self.superview.frame.size.width / 2.0f - width / 2.0f + offsetX;
+    float y = self.superview.frame.size.height / 2.0f - height / 2.0f + offsetY;
     CGRect frame = CGRectMake(x, y, width, height);
     
     [self setFrame:frame withRatio:0.15];
@@ -197,6 +208,12 @@ static int frontViewHeight = 640;
     _frontView = frontView;
     _frontView.userInteractionEnabled = YES;
     _frontView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _frontView.layer.masksToBounds = NO;
+    _frontView.layer.shadowOffset = CGSizeMake(0, 2);
+    _frontView.layer.shadowRadius = 2;
+    _frontView.layer.shadowOpacity = 0.4;
+    _frontView.layer.shouldRasterize = YES;
+    _frontView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(frontViewClick:)];
     [_frontView addGestureRecognizer:recognizer];
