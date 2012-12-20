@@ -33,8 +33,6 @@
 		C34E6773167F4D19006A46C3 /* chart-round@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E6769167F4D19006A46C3 /* chart-round@2x.png */; };
 		C34E6774167F4D19006A46C3 /* panels-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E676A167F4D19006A46C3 /* panels-ipad.png */; };
 		C34E6775167F4D19006A46C3 /* panels-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C34E676B167F4D19006A46C3 /* panels-ipad@2x.png */; };
-		C34E677D167F4E37006A46C3 /* ServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34E677B167F4E37006A46C3 /* ServersViewController.m */; };
-		C34E6780167F4E4C006A46C3 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34E677F167F4E4C006A46C3 /* ServersViewController.xib */; };
 		C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2565165EB20900F0E242 /* UIKit.framework */; };
 		C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2567165EB20900F0E242 /* Foundation.framework */; };
 		C39A256A165EB20900F0E242 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39A2569165EB20900F0E242 /* CoreGraphics.framework */; };
@@ -82,8 +80,8 @@
 		C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC26167F9A4F0003C192 /* list-item@2x.png */; };
 		C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */; };
 		C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */; };
-		C3FCC8D316808C7E00F10278 /* ServersViewControllerExtra.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */; };
-		C3FCC8D616808CB100F10278 /* ServersViewControllerExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */; };
+		C3FCC8D316808C7E00F10278 /* ServersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3FCC8D216808C7E00F10278 /* ServersViewController.xib */; };
+		C3FCC8D616808CB100F10278 /* ServersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCC8D516808CB100F10278 /* ServersViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,9 +115,6 @@
 		C34E6769167F4D19006A46C3 /* chart-round@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart-round@2x.png"; sourceTree = "<group>"; };
 		C34E676A167F4D19006A46C3 /* panels-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels-ipad.png"; sourceTree = "<group>"; };
 		C34E676B167F4D19006A46C3 /* panels-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panels-ipad@2x.png"; sourceTree = "<group>"; };
-		C34E677A167F4E37006A46C3 /* ServersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewController.h; sourceTree = "<group>"; };
-		C34E677B167F4E37006A46C3 /* ServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewController.m; sourceTree = "<group>"; };
-		C34E677F167F4E4C006A46C3 /* ServersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
 		C39A2561165EB20900F0E242 /* pingu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39A2565165EB20900F0E242 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39A2567165EB20900F0E242 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -173,9 +168,9 @@
 		C3C8EC2B167FAA6B0003C192 /* FlipContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlipContainerView.h; sourceTree = "<group>"; };
 		C3C8EC2C167FAA6B0003C192 /* FlipContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlipContainerView.m; sourceTree = "<group>"; };
 		C3EB7A0A1681D2350057A023 /* FlipViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipViewDelegate.h; sourceTree = "<group>"; };
-		C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewControllerExtra.xib; sourceTree = "<group>"; };
-		C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewControllerExtra.h; sourceTree = "<group>"; };
-		C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewControllerExtra.m; sourceTree = "<group>"; };
+		C3FCC8D216808C7E00F10278 /* ServersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServersViewController.xib; sourceTree = "<group>"; };
+		C3FCC8D416808CB100F10278 /* ServersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersViewController.h; sourceTree = "<group>"; };
+		C3FCC8D516808CB100F10278 /* ServersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,10 +213,8 @@
 				C3C8EC0F167F5DAD0003C192 /* FlipView.m */,
 				C3EB7A0A1681D2350057A023 /* FlipViewDelegate.h */,
 				C2716CEB165EDCC800ED24C2 /* main.m */,
-				C34E677A167F4E37006A46C3 /* ServersViewController.h */,
-				C34E677B167F4E37006A46C3 /* ServersViewController.m */,
-				C3FCC8D416808CB100F10278 /* ServersViewControllerExtra.h */,
-				C3FCC8D516808CB100F10278 /* ServersViewControllerExtra.m */,
+				C3FCC8D416808CB100F10278 /* ServersViewController.h */,
+				C3FCC8D516808CB100F10278 /* ServersViewController.m */,
 				C3ADEF0C1667D375006FA274 /* StatusViewController.h */,
 				C3ADEF0D1667D375006FA274 /* StatusViewController.m */,
 			);
@@ -371,9 +364,8 @@
 		C3ADEF121667D3A1006FA274 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				C3FCC8D216808C7E00F10278 /* ServersViewControllerExtra.xib */,
+				C3FCC8D216808C7E00F10278 /* ServersViewController.xib */,
 				C3C8EC29167FA26E0003C192 /* StatusViewControllerIpad.xib */,
-				C34E677F167F4E4C006A46C3 /* ServersViewController.xib */,
 				C3ADEF131667D3A1006FA274 /* StatusViewController.xib */,
 			);
 			name = views;
@@ -490,13 +482,12 @@
 				C34E6773167F4D19006A46C3 /* chart-round@2x.png in Resources */,
 				C34E6774167F4D19006A46C3 /* panels-ipad.png in Resources */,
 				C34E6775167F4D19006A46C3 /* panels-ipad@2x.png in Resources */,
-				C34E6780167F4E4C006A46C3 /* ServersViewController.xib in Resources */,
 				C3C8EC12167F5E9A0003C192 /* tobias.jpg in Resources */,
 				C3C8EC1A167F79290003C192 /* tobias2.jpg in Resources */,
 				C3C8EC27167F9A4F0003C192 /* list-item.png in Resources */,
 				C3C8EC28167F9A4F0003C192 /* list-item@2x.png in Resources */,
 				C3C8EC2A167FA26E0003C192 /* StatusViewControllerIpad.xib in Resources */,
-				C3FCC8D316808C7E00F10278 /* ServersViewControllerExtra.xib in Resources */,
+				C3FCC8D316808C7E00F10278 /* ServersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,10 +501,9 @@
 				C2716D01165EDCC800ED24C2 /* AppDelegate.m in Sources */,
 				C2716D02165EDCC800ED24C2 /* main.m in Sources */,
 				C3ADEF0F1667D375006FA274 /* StatusViewController.m in Sources */,
-				C34E677D167F4E37006A46C3 /* ServersViewController.m in Sources */,
 				C3C8EC10167F5DAD0003C192 /* FlipView.m in Sources */,
 				C3C8EC2D167FAA6B0003C192 /* FlipContainerView.m in Sources */,
-				C3FCC8D616808CB100F10278 /* ServersViewControllerExtra.m in Sources */,
+				C3FCC8D616808CB100F10278 /* ServersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

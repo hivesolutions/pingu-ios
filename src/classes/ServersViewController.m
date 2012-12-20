@@ -43,87 +43,31 @@
     // should be set as a pattern
     UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"LogoutButtonTitle", @"Logout")
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(logoutClick:)];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-refresh.png"]
+                                                        landscapeImagePhone:[UIImage imageNamed:@"icon-refresh-small.png"]
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(refreshClick:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
+    self.navigationItem.rightBarButtonItem = refreshButton;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [self.overlay addGestureRecognizer:tapRecognizer];
-    
-    UITapGestureRecognizer *tapRecognizer2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tobiasClick:)];
-    self.tobiasImage.userInteractionEnabled = YES;
-    [self.tobiasImage addGestureRecognizer:tapRecognizer2];
-    
-    [self.view bringSubviewToFront:self.overlay];
+
+    for(int index = 0; index < 100; index++) {
+        FlipView *flipView = [[FlipView alloc] initWithFrame:CGRectMake(0, 0, 100, 200)];
+        [self.flipContainer addFlipView:flipView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-
-- (IBAction)handleTap:(id)sender {
-    [UIView beginAnimations:@"MoveAndRotateAnimation" context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.75];
-    
-    float height = 280;
-    float width = 280;
-    
-    self.tobias.frame = CGRectMake(20, 747, width, height);
-    
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                           forView:self.tobias
-                             cache:NO];
-    
-    self.overlay.alpha = 0.0;
-    
-    [UIView commitAnimations];
-    
-    self.statusViewController.view.hidden = YES;
-    
-    self.tobiasImage.hidden = NO;
-    self.tobiasImage2.hidden = NO;
-}
-
-- (IBAction)tobiasClick:(id)sender {   
-    [UIView beginAnimations:@"MoveAndRotateAnimation" context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.75];
-
-    float height = 640 * 1.20;
-    float width = 640 * 1.20;
-    
-    float x = self.view.frame.size.width / 2.0f - width / 2.0f;
-    float y = self.view.frame.size.height / 2.0f - height / 2.0f;
-    self.tobias.frame = CGRectMake(x, y, width, height);
-    
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                           forView:self.tobias
-                             cache:YES];
-    
-    self.overlay.alpha = 0.4;
-    
-    [UIView commitAnimations];
-    
-    [self.view bringSubviewToFront:self.tobias];
-    
-    // removes the tobias view from the parent view not required anymore
-    self.tobiasImage.hidden = YES;
-    self.tobiasImage2.hidden = YES;
-    
-    self.statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewControllerIpad" bundle:nil];
-    float width_ = 640;
-    float height_ = 640;
-    float width__ = self.tobias.frame.size.width;
-    float height__ = self.tobias.frame.size.height;
-    
-    float x_ = width__ / 2.0 - width_ / 2.0;
-    float y_ = height__ / 2.0 - height_ / 2.0;
-    
-    self.statusViewController.view.frame = CGRectMake(x_, y_, width_, height_);
-
-    [self.tobias addSubview:self.statusViewController.view];
 }
 
 @end

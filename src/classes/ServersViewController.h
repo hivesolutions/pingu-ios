@@ -26,16 +26,11 @@
 #import "Dependencies.h"
 
 #import "StatusViewController.h"
+#import "FlipContainerView.h"
 
 @interface ServersViewController : UIViewController {
 }
 
-@property (nonatomic) IBOutlet UIView *tobias;
-@property (nonatomic) IBOutlet UIImageView *tobiasImage;
-@property (nonatomic) IBOutlet UIImageView *tobiasImage2;
-@property (nonatomic) IBOutlet UIView *overlay;
-@property (nonatomic) IBOutlet StatusViewController *statusViewController;
-
-- (IBAction)tobiasClick:(id)sender;
+@property (nonatomic) IBOutlet FlipContainerView *flipContainer;
 
 @end
