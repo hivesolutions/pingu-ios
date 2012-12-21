@@ -116,6 +116,7 @@ static int backViewHeight = 640;
     // is (centered in the front of the panel)
     self.up = YES;
     self.pending = YES;
+    self.userInteractionEnabled = NO;
 }
 
 - (void)bringDown {
@@ -157,6 +158,29 @@ static int backViewHeight = 640;
     // is thumbnailed down in the panel
     self.up = NO;
     self.pending = YES;
+    self.userInteractionEnabled = NO;
+}
+
+- (void)doLayout {
+    float x;
+    float y;
+    
+    _ratio = backViewWidth / self.frame.size.width;
+    _ratioI = 1.0 / _ratio;
+    
+    if(self.up) {
+        x = (self.backView.superview.frame.size.width / 2.0) - (backViewWidth / 2.0);
+        y = (self.backView.superview.frame.size.height / 2.0) - (backViewHeight / 2.0);
+    } else {
+        x = self.frame.origin.x - (backViewWidth / 2.0 - self.frame.size.width / 2.0);
+        y = self.frame.origin.y - (backViewHeight / 2.0 - self.frame.size.height / 2.0);
+        
+        CATransform3D scale = CATransform3DMakeScale(_ratioI, _ratioI, _ratioI);
+        self.frontView.layer.transform = scale;
+    }
+    
+    self.frontView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
+    self.backView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
 }
 
 - (CAAnimation *)upAnimation:(NSTimeInterval)duration
@@ -214,28 +238,6 @@ static int backViewHeight = 640;
     animationGroup.fillMode = kCAFillModeForwards;
     animationGroup.removedOnCompletion = NO;
     return animationGroup;
-}
-
-- (void)doLayout {
-    float x;
-    float y;
-    
-    _ratio = backViewWidth / self.frame.size.width;
-    _ratioI = 1.0 / _ratio;
-    
-    if(self.up) {
-        x = (self.backView.superview.frame.size.width / 2.0) - (backViewWidth / 2.0);
-        y = (self.backView.superview.frame.size.height / 2.0) - (backViewHeight / 2.0);
-    } else {
-        x = self.frame.origin.x - (backViewWidth / 2.0 - self.frame.size.width / 2.0);
-        y = self.frame.origin.y - (backViewHeight / 2.0 - self.frame.size.height / 2.0);
-        
-        CATransform3D scale = CATransform3DMakeScale(_ratioI, _ratioI, _ratioI);
-        self.frontView.layer.transform = scale;
-    }
-    
-    self.frontView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
-    self.backView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
 }
 
 - (CAAnimation *)downAnimation:(NSTimeInterval)duration
@@ -320,6 +322,7 @@ static int backViewHeight = 640;
     }
     
     self.pending = NO;
+    self.userInteractionEnabled = YES;
 }
 
 - (void)frontViewClick:(id)sender {
@@ -343,6 +346,12 @@ static int backViewHeight = 640;
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
     [self doLayout];
+}
+
+- (void)setUserInteractionEnabled:(BOOL)userInteractionEnabled {
+    [super setUserInteractionEnabled:userInteractionEnabled];
+    self.frontView.userInteractionEnabled = userInteractionEnabled;
+    self.backView.userInteractionEnabled = userInteractionEnabled;
 }
 
 - (void)setFrontView:(UIView *)frontView {
