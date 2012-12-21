@@ -117,6 +117,15 @@ static int backViewHeight = 640;
     self.up = YES;
     self.pending = YES;
     self.userInteractionEnabled = NO;
+    
+    // calls the appropriate delegate methods to indicate that the up
+    // operation has already started
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didStart:)]) {
+        [self.delegate didStart:self];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didStartUp:)]) {
+        [self.delegate didStartUp:self];
+    }
 }
 
 - (void)bringDown {
@@ -159,6 +168,15 @@ static int backViewHeight = 640;
     self.up = NO;
     self.pending = YES;
     self.userInteractionEnabled = NO;
+    
+    // calls the appropriate delegate methods to indicate that the down
+    // operation has already started
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didStart:)]) {
+        [self.delegate didStart:self];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didStartDown:)]) {
+        [self.delegate didStartDown:self];
+    }
 }
 
 - (void)doLayout {
@@ -303,12 +321,18 @@ static int backViewHeight = 640;
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(bool)flag {
+    if(!flag) { return; }
+    
     if(self.up) {
         self.frontView.hidden = YES;
         
         [self.backView.layer removeAllAnimations];
         [self.frontView.layer removeAllAnimations];
         [self doLayout];
+        
+        if(self.delegate && [self.delegate respondsToSelector:@selector(didEndUp:)]) {
+            [self.delegate didEndUp:self];
+        }
     }
     else {
         self.backView.layer.zPosition = -1.0;
@@ -319,10 +343,18 @@ static int backViewHeight = 640;
         [self.backView.layer removeAllAnimations];
         [self.frontView.layer removeAllAnimations];
         [self doLayout];
+        
+        if(self.delegate && [self.delegate respondsToSelector:@selector(didEndDown:)]) {
+            [self.delegate didEndDown:self];
+        }
     }
     
     self.pending = NO;
     self.userInteractionEnabled = YES;
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(didEnd:)]) {
+        [self.delegate didEnd:self];
+    }
 }
 
 - (void)frontViewClick:(id)sender {

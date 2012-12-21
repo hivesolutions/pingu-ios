@@ -173,7 +173,6 @@ static int itemVLMargin = 32;
         [UIView commitAnimations];
         [flipView bringDown];
         _scrollView.scrollEnabled = YES;
-        self.up = NO;
     } else {
         [_scrollView bringSubviewToFront:_overlay];
         [_scrollView bringSubviewToFront:flipView];
@@ -184,8 +183,15 @@ static int itemVLMargin = 32;
         [UIView commitAnimations];
         [flipView bringUp];
         _scrollView.scrollEnabled = NO;
-        self.up = YES;
     }
+}
+
+- (void)didStartUp:(FlipView *)flipView {
+    self.up = YES;
+}
+
+- (void)didEndDown:(FlipView *)flipView {
+    self.up = NO;
 }
 
 @end

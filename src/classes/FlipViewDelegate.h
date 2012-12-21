@@ -34,5 +34,11 @@
 - (void)didTap:(FlipView *)flipView;
 - (void)didTapFront:(FlipView *)flipView;
 - (void)didTapBack:(FlipView *)flipView;
+- (void)didStart:(FlipView *)flipView;
+- (void)didStartUp:(FlipView *)flipView;
+- (void)didStartDown:(FlipView *)flipView;
+- (void)didEnd:(FlipView *)flipView;
+- (void)didEndUp:(FlipView *)flipView;
+- (void)didEndDown:(FlipView *)flipView;
 
 @end
