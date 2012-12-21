@@ -32,19 +32,16 @@
 
 @implementation FlipView
 
-static int frontViewWidth = 640;
-static int frontViewHeight = 640;
+static int backViewWidth = 640;
+static int backViewHeight = 640;
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
         self.up = NO;
-        self.enabled = NO;
-        self.currentView = nil;
+        self.pending = NO;
         
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
-//        self.backView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias2.jpg"]];
-        
         StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewControllerIpad" bundle:nil];
         self.backView = statusViewController.view;
     }
@@ -55,31 +52,14 @@ static int frontViewHeight = 640;
     self = [super initWithCoder:aDecoder];
     if(self) {
         self.up = NO;
-        self.enabled = NO;
-        self.currentView = nil;
+        self.pending = NO;
     }
     return self;
 }
 
-- (void)enable {
-    if(self.enabled) { return; }
-
-    self.frontView.hidden = YES;
-    self.backView.hidden = YES;
-    [self addSubview:self.frontView];
-    //[self addSubview:self.backView];
-    self.currentView = self.frontView;
-    self.currentView.hidden = NO;
-
-    self.enabled = YES;
-}
-
-- (void)disable {
-    if(!self.enabled) { return; }
-    
-    [self.frontView removeFromSuperview];
-    [self.backView removeFromSuperview];
-    self.enabled = NO;
+- (void)didMoveToSuperview {
+    [self.superview addSubview:self.backView];
+    [self.superview addSubview:self.frontView];
 }
 
 - (void)toggle {
@@ -87,105 +67,259 @@ static int frontViewHeight = 640;
     else { [self bringUp]; }
 }
 
-
-
-- (void)myAnimationStopped:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    self.backView.layer.masksToBounds = NO;
-    self.backView.layer.shouldRasterize = YES;
-    self.backView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.backView.layer.shadowRadius = 8.0;
-    self.backView.layer.shadowOpacity = 0.8;
-    self.backView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-}
-
 - (void)bringUp {
+    if(self.pending) { return; }
     if(self.up) { return; }
     
-    self.currentView.hidden = YES;
-    self.currentView = self.backView;
-    [self addSubview:self.currentView];
-
-    float offsetX = 0.0f;
-    float offsetY = 0.0f;
+    // sets both the front and back views as visible (enforces
+    // the correct rendering of the animation)
+    self.frontView.hidden = NO;
+    self.backView.hidden = NO;
     
-    bool isScrollable = [self.superview isKindOfClass:[UIScrollView class]];
-    if(isScrollable) {
-        offsetX += ((UIScrollView *) self.superview).contentOffset.x;
-        offsetY += ((UIScrollView *) self.superview).contentOffset.y;
-    }
+    // retrieves the references for both the top and the bottom layers
+    // ir order to correctly manipulate them
+    CALayer *topLayer = self.frontView.layer;
+    CALayer *bottomLayer = self.backView.layer;
     
-    float width = frontViewWidth;
-    float height = frontViewHeight;
-    float x = self.superview.frame.size.width / 2.0f - width / 2.0f + offsetX;
-    float y = self.superview.frame.size.height / 2.0f - height / 2.0f + offsetY;
-    CGRect frame = CGRectMake(x, y, width, height);
+    // brings both views to the front so that they stay on
+    // on top of the other views contained in the super view
+    [self.frontView.superview bringSubviewToFront:self.frontView];
+    [self.backView.superview bringSubviewToFront:self.backView];
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(myAnimationStopped:finished:context:)];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.5];
-    [self setFrame:frame withRatio:0.15];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft
-                           forView:self
-                             cache:YES];
+    // sets the z position for both layers to a high value so
+    // that the layer itself remains on top
+    topLayer.zPosition = 1000.0;
+    bottomLayer.zPosition = 1000.0;
     
-    [UIView commitAnimations];
+    // creates and sets the perspective in both the top
+    // and the bottom layer to provide a sence of depth
+    CATransform3D perspective = CATransform3DIdentity;
+    perspective.m34 = 1.0f / 1250.f;
+    topLayer.transform = perspective;
+    bottomLayer.transform = perspective;
     
-    self.currentView.hidden = NO;
+    // creates both the animation for the top layer and the animation
+    // for the bottom layer, in order to be able to create the flip effect
+    // then sets the delegate for the animation as the current instances
+    CAAnimation *topAnimation = [self upAnimation:0.5 forTopLayer:YES];
+    CAAnimation *bottomAnimation = [self upAnimation:0.5 forTopLayer:NO];
+    topAnimation.delegate = self;
+    
+    // creates the transaction for the anumation and pushes both animations
+    // to the core animation stack of animations (to be processed)
+    [CATransaction begin];
+    [topLayer addAnimation:topAnimation forKey:@"flip"];
+    [bottomLayer addAnimation:bottomAnimation forKey:@"flip"];
+    [CATransaction commit];
+    
+    // sets the up flag indicating that the current state of the view
+    // is (centered in the front of the panel)
     self.up = YES;
+    self.pending = YES;
 }
 
 - (void)bringDown {
+    if(self.pending) { return; }
     if(!self.up) { return; }
 
-    self.currentView.hidden = YES;
-    self.currentView = self.frontView;
-
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-    [UIView setAnimationDuration:0.5];
+    // sets both the front and back views as visible (enforces
+    // the correct rendering of the animation)
+    self.frontView.hidden = NO;
+    self.backView.hidden = NO;
     
-    [self setFrame:self.baseFrame withRatio:0.75];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight
-                           forView:self
-                             cache:YES];
+    // retrieves the references for both the top and the bottom layers
+    // ir order to correctly manipulate them
+    CALayer *topLayer = self.backView.layer;
+    CALayer *bottomLayer = self.frontView.layer;
     
-    [UIView commitAnimations];
-
-    self.currentView.hidden = NO;
+    // creates and sets the perspective in both the top
+    // and the bottom layer to provide a sence of depth
+    CATransform3D perspective = CATransform3DIdentity;
+    perspective.m34 = 1.0f / 1250.f;
+    topLayer.transform = perspective;
+    bottomLayer.transform = perspective;
+    
+    // creates both the animation for the top layer and the animation
+    // for the bottom layer, in order to be able to create the flip effect
+    // then sets the delegate for the animation as the current instances
+    CAAnimation *topAnimation = [self downAnimation:0.5 forTopLayer:YES];
+    CAAnimation *bottomAnimation = [self downAnimation:0.5 forTopLayer:NO];
+    topAnimation.delegate = self;
+    
+    // creates the transaction for the anumation and pushes both animations
+    // to the core animation stack of animations (to be processed)
+    [CATransaction begin];
+    [topLayer addAnimation:topAnimation forKey:@"flip"];
+    [bottomLayer addAnimation:bottomAnimation forKey:@"flip"];
+    [CATransaction commit];
+    
+    // unsets the up flag indicating that the current state of the view
+    // is thumbnailed down in the panel
     self.up = NO;
+    self.pending = YES;
+}
+
+- (CAAnimation *)upAnimation:(NSTimeInterval)duration
+                 forTopLayer:(bool)isTop {
+    // initializes the various animations that are going to
+    // be used to perform the flip operation in a layer
+    CABasicAnimation *rotationAnimation = nil;
+    CABasicAnimation *scaleAnimation = nil;
+    CABasicAnimation *translateXAnimation = nil;
+    CABasicAnimation *translateYAnimation = nil;
     
+    // creates the rotation animation arround the y axis, this
+    // is considered the main animation, note that the way of
+    // the roation varies in conformance with the begins on top
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    CGFloat startValue = isTop ? 0.0f : M_PI;
+    CGFloat endValue = isTop ? -M_PI : 0.0f;
+    rotationAnimation.fromValue = [NSNumber numberWithDouble:startValue];
+    rotationAnimation.toValue = [NSNumber numberWithDouble:endValue];
     
-    self.backView.layer.masksToBounds = NO;
-    self.backView.layer.shouldRasterize = NO;
-    self.backView.layer.shadowOffset = CGSizeMake(0, 0);
-    self.backView.layer.shadowRadius = 0.0;
-    self.backView.layer.shadowOpacity = 0.0;
-    self.backView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    // checks if the scale factor is diferent from the "normal" on
+    // in such case performs a scale operation that is reversed
+    scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:_ratioI];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:1.0];
+    scaleAnimation.duration = duration;
+    scaleAnimation.autoreverses = NO;
     
-    [self.backView removeFromSuperview];
+    // creates the animation that will be used to correctly position the layers
+    // on top of the current panel (centered on screen)
+    translateXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+    translateXAnimation.toValue = [NSNumber numberWithFloat:self.superview.center.x];
+    translateXAnimation.duration = duration;
+    translateYAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    translateYAnimation.toValue = [NSNumber numberWithFloat:self.superview.center.y];
+    translateYAnimation.duration = duration;
+    
+    // combines the complete set of animations into a single
+    // sets so that all of them are performed at once
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    animationGroup.animations = [NSArray arrayWithObjects:
+                                 rotationAnimation,
+                                 scaleAnimation,
+                                 translateXAnimation,
+                                 translateYAnimation,
+                                 nil];
+    
+    // sets the easy in and out timing function for the animation and sets
+    // the duration of the complete combines animation
+    animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animationGroup.duration = duration;
+    
+    // avoids the removal of the layer on the completion, this avoids an
+    // unnecessary flickering effect, then returns the animation group
+    animationGroup.fillMode = kCAFillModeForwards;
+    animationGroup.removedOnCompletion = NO;
+    return animationGroup;
 }
 
 - (void)doLayout {
-    if(!self.up) { return; }
-
-    float offsetX = 0.0f;
-    float offsetY = 0.0f;
+    float x;
+    float y;
     
-    bool isScrollable = [self.superview isKindOfClass:[UIScrollView class]];
-    if(isScrollable) {
-        offsetX += ((UIScrollView *) self.superview).contentOffset.x;
-        offsetY += ((UIScrollView *) self.superview).contentOffset.y;
+    _ratio = backViewWidth / self.frame.size.width;
+    _ratioI = 1.0 / _ratio;
+    
+    if(self.up) {
+        x = (self.backView.superview.frame.size.width / 2.0) - (backViewWidth / 2.0);
+        y = (self.backView.superview.frame.size.height / 2.0) - (backViewHeight / 2.0);
+    } else {
+        x = self.frame.origin.x - (backViewWidth / 2.0 - self.frame.size.width / 2.0);
+        y = self.frame.origin.y - (backViewHeight / 2.0 - self.frame.size.height / 2.0);
+        
+        CATransform3D scale = CATransform3DMakeScale(_ratioI, _ratioI, _ratioI);
+        self.frontView.layer.transform = scale;
     }
     
-    float width = frontViewWidth;
-    float height = frontViewHeight;
-    float x = self.superview.frame.size.width / 2.0f - width / 2.0f + offsetX;
-    float y = self.superview.frame.size.height / 2.0f - height / 2.0f + offsetY;
-    CGRect frame = CGRectMake(x, y, width, height);
+    self.frontView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
+    self.backView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
+}
+
+- (CAAnimation *)downAnimation:(NSTimeInterval)duration
+                   forTopLayer:(bool)isTop {
+    // initializes the various animations that are going to
+    // be used to perform the flip operation in a layer
+    CABasicAnimation *rotationAnimation = nil;
+    CABasicAnimation *scaleAnimation = nil;
+    CABasicAnimation *translateXAnimation = nil;
+    CABasicAnimation *translateYAnimation = nil;
     
-    [self setFrame:frame withRatio:0.15];
+    // creates the rotation animation arround the y axis, this
+    // is considered the main animation, note that the way of
+    // the roation varies in conformance with the begins on top
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
+    CGFloat startValue = isTop ? 0.0f : -M_PI;
+    CGFloat endValue = isTop ? M_PI : 0.0f;
+    rotationAnimation.fromValue = [NSNumber numberWithDouble:startValue];
+    rotationAnimation.toValue = [NSNumber numberWithDouble:endValue];
+    
+    // checks if the scale factor is diferent from the "normal" on
+    // in such case performs a scale operation that is reversed
+    scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:_ratioI];
+    scaleAnimation.duration = duration;
+    scaleAnimation.autoreverses = NO;
+    
+    // calculçates the returning position for the frame taking
+    // into account the raio between the top and the bottom sizes
+    float x = self.frame.origin.x + backViewWidth / (_ratio * 2.0);
+    float y = self.frame.origin.y + backViewHeight / (_ratio * 2.0);
+    
+    // creates the animation that will be used to correctly position the layers
+    // back on their original position (rollback position)
+    translateXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
+    translateXAnimation.toValue = [NSNumber numberWithFloat:x];
+    translateXAnimation.duration = duration;
+    translateYAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    translateYAnimation.toValue = [NSNumber numberWithFloat:y];
+    translateYAnimation.duration = duration;
+    
+    // combines the complete set of animations into a single
+    // sets so that all of them are performed at once
+    CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
+    animationGroup.animations = [NSArray arrayWithObjects:
+                                 rotationAnimation,
+                                 scaleAnimation,
+                                 translateXAnimation,
+                                 translateYAnimation,
+                                 nil];
+    
+    // sets the easy in and out timing function for the animation and sets
+    // the duration of the complete combines animation
+    animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animationGroup.duration = duration;
+    
+    // avoids the removal of the layer on the completion, thi avoids an
+    // unnecessary flickering effect, then returns the animation group
+    animationGroup.fillMode = kCAFillModeForwards;
+    animationGroup.removedOnCompletion = NO;
+    return animationGroup;
+}
+
+- (void)animationDidStop:(CAAnimation *)animation finished:(bool)flag {
+    if(self.up) {
+        self.frontView.hidden = YES;
+        
+        [self.backView.layer removeAllAnimations];
+        [self.frontView.layer removeAllAnimations];
+        [self doLayout];
+    }
+    else {
+        self.backView.layer.zPosition = -1.0;
+        self.frontView.layer.zPosition = -1.0;
+
+        self.backView.hidden = YES;
+    
+        [self.backView.layer removeAllAnimations];
+        [self.frontView.layer removeAllAnimations];
+        [self doLayout];
+    }
+    
+    self.pending = NO;
 }
 
 - (void)frontViewClick:(id)sender {
@@ -206,55 +340,32 @@ static int frontViewHeight = 640;
     }
 }
 
-- (void)setFrame:(CGRect)frame withRatio:(float)ratio {
-    float width = frame.size.width * (ratio + 1.0);
-    float height = frame.size.height * (ratio + 1.0);
-    float xOffset = frame.size.width * (ratio / 2.0);
-    float yOffset = frame.size.height * (ratio / 2.0);
-    
-    [super setFrame:CGRectMake(
-        frame.origin.x - xOffset, frame.origin.y - yOffset, width, height
-    )];
-}
-
-- (void)setInnerFrame:(CGRect)frame withRatio:(float)ratio {
-    float xOffset = frame.size.width * (ratio / 2.0);
-    float yOffset = frame.size.height * (ratio / 2.0);
-    
-    self.frontView.frame = CGRectMake(
-        xOffset, yOffset, frame.size.width, frame.size.height
-    );
-    self.backView.frame = CGRectMake(
-        xOffset, yOffset, frame.size.width, frame.size.height
-    );
-}
-
-- (void)setBaseFrame:(CGRect)baseFrame {
-    _baseFrame = baseFrame;
-    [self setFrame:baseFrame withRatio:0.75];
-    [self setInnerFrame:baseFrame withRatio:0.75];
+- (void)setFrame:(CGRect)frame {
+    [super setFrame:frame];
+    [self doLayout];
 }
 
 - (void)setFrontView:(UIView *)frontView {
     _frontView = frontView;
     _frontView.userInteractionEnabled = YES;
-    _frontView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    _frontView.layer.masksToBounds = NO;
-    _frontView.layer.shouldRasterize = YES;
-    _frontView.layer.shadowOffset = CGSizeMake(0, 2);
-    _frontView.layer.shadowRadius = 2.0;
-    _frontView.layer.shadowOpacity = 0.4;
-    _frontView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    _frontView.layer.doubleSided = NO;
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(frontViewClick:)];
     [_frontView addGestureRecognizer:recognizer];
-    if(self.currentView == nil) { self.currentView = frontView; }
 }
 
 - (void)setBackView:(UIView *)backView {
     _backView = backView;
+    _backView.hidden = YES;
     _backView.userInteractionEnabled = YES;
-    _backView.autoresizingMask |= UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _backView.layer.doubleSided = NO;
+    _backView.layer.masksToBounds = NO;
+    _backView.layer.shouldRasterize = YES;
+    _backView.layer.cornerRadius = 8.0;
+    _backView.layer.shadowOffset = CGSizeMake(0, 0);
+    _backView.layer.shadowRadius = 6.0;
+    _backView.layer.shadowOpacity = 0.6;
+    _backView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                  action:@selector(backViewClick:)];
     [_backView addGestureRecognizer:recognizer];

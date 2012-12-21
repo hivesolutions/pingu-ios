@@ -28,18 +28,18 @@
 #import "FlipViewDelegate.h"
 
 @interface FlipView : UIView {
+    @private
+    float _ratio;
+    float _ratioI;
 }
 
 @property (nonatomic) bool up;
-@property (nonatomic) bool enabled;
-@property (nonatomic) UIView *currentView;
+@property (nonatomic) bool pending;
 @property (nonatomic) UIView *frontView;
 @property (nonatomic) UIView *backView;
 @property (nonatomic) CGRect baseFrame;
 @property (nonatomic, weak) NSObject<FlipViewDelegate> *delegate;
 
-- (void)enable;
-- (void)disable;
 - (void)toggle;
 - (void)bringUp;
 - (void)bringDown;
