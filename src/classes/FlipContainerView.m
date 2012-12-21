@@ -37,6 +37,8 @@ static int itemVLMargin = 32;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
+        self.up = NO;
+        
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithFrame:frame];
@@ -55,6 +57,8 @@ static int itemVLMargin = 32;
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if(self) {
+        self.up = NO;
+        
         _scrollView = [[UIScrollView alloc] initWithCoder:aDecoder];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithCoder:aDecoder];
@@ -138,14 +142,12 @@ static int itemVLMargin = 32;
         if(offset == 0) { line++; }
         
         FlipView *flipView = self.flipViews[index];
-        flipView.baseFrame = CGRectMake(
+        flipView.frame = CGRectMake(
             extraPadding + itemTWidth * offset,
             itemVMargin + itemTHeight * line - 12,
             itemWidth,
             itemHeight
         );
-        [flipView enable];
-        [flipView doLayout];
     }
 }
 
@@ -160,6 +162,9 @@ static int itemVLMargin = 32;
 - (void)didTap:(id)sender {
     FlipView *flipView = (FlipView *) sender;
     
+    if(flipView.pending) { return; }
+    if(self.up && !flipView.up) { return; }
+    
     if(flipView.up) {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
@@ -168,6 +173,7 @@ static int itemVLMargin = 32;
         [UIView commitAnimations];
         [flipView bringDown];
         _scrollView.scrollEnabled = YES;
+        self.up = NO;
     } else {
         [_scrollView bringSubviewToFront:_overlay];
         [_scrollView bringSubviewToFront:flipView];
@@ -178,6 +184,7 @@ static int itemVLMargin = 32;
         [UIView commitAnimations];
         [flipView bringUp];
         _scrollView.scrollEnabled = NO;
+        self.up = YES;
     }
 }
 

@@ -34,6 +34,7 @@
     UIView *_overlay;
 }
 
+@property (nonatomic) bool up;
 @property (nonatomic) NSMutableArray *flipViews;
 
 - (void)addFlipView:(FlipView *)flipView;
