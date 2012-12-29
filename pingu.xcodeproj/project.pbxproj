@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C24E65E0168F23F4004DC9A4 /* Cameo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C24E65DF168F23F4004DC9A4 /* Cameo.framework */; };
+		C24E65E2168F2426004DC9A4 /* HMBaseResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C24E65E1168F2426004DC9A4 /* HMBaseResources.bundle */; };
 		C2716D01165EDCC800ED24C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C2716CEA165EDCC800ED24C2 /* AppDelegate.m */; };
 		C2716D02165EDCC800ED24C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2716CEB165EDCC800ED24C2 /* main.m */; };
 		C2716D03165EDCC800ED24C2 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C2716CEE165EDCC800ED24C2 /* Icon-72.png */; };
@@ -66,8 +68,6 @@
 		C3A57CF21667E16D00FC8167 /* icon-refresh-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CEE1667E16D00FC8167 /* icon-refresh-small@2x.png */; };
 		C3A57CF31667E16D00FC8167 /* icon-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CEF1667E16D00FC8167 /* icon-refresh.png */; };
 		C3A57CF41667E16D00FC8167 /* icon-refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CF01667E16D00FC8167 /* icon-refresh@2x.png */; };
-		C3A57CF61667E2A600FC8167 /* Cameo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A57CF51667E2A600FC8167 /* Cameo.framework */; };
-		C3A57CF81667E2BA00FC8167 /* HMBaseResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CF71667E2BA00FC8167 /* HMBaseResources.bundle */; };
 		C3A57D011667E3FD00FC8167 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57CFF1667E3FD00FC8167 /* logo.png */; };
 		C3A57D021667E3FD00FC8167 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57D001667E3FD00FC8167 /* logo@2x.png */; };
 		C3A57D131667E56800FC8167 /* button-back-blue-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A57D031667E56700FC8167 /* button-back-blue-pressed.png */; };
@@ -101,6 +101,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C24E65DF168F23F4004DC9A4 /* Cameo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cameo.framework; path = /Users/joamag/Desktop/repo_extra/pingu_ios/../../../../../Documents/Cameo/Cameo.framework; sourceTree = "<absolute>"; };
+		C24E65E1168F2426004DC9A4 /* HMBaseResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HMBaseResources.bundle; path = /Documents/Cameo/Cameo.framework/Versions/A/Resources/HMBaseResources.bundle; sourceTree = "<absolute>"; };
 		C2716CE9165EDCC800ED24C2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2716CEA165EDCC800ED24C2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C2716CEB165EDCC800ED24C2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -165,8 +167,6 @@
 		C3A57CEE1667E16D00FC8167 /* icon-refresh-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-refresh-small@2x.png"; sourceTree = "<group>"; };
 		C3A57CEF1667E16D00FC8167 /* icon-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-refresh.png"; sourceTree = "<group>"; };
 		C3A57CF01667E16D00FC8167 /* icon-refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-refresh@2x.png"; sourceTree = "<group>"; };
-		C3A57CF51667E2A600FC8167 /* Cameo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cameo.framework; path = /Users/administrator/Desktop/repo_extra/pingu_ios/../../../../../Documents/Cameo/Cameo.framework; sourceTree = "<absolute>"; };
-		C3A57CF71667E2BA00FC8167 /* HMBaseResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HMBaseResources.bundle; path = /Users/administrator/Desktop/repo_extra/pingu_ios/../../../../../Documents/Cameo/Cameo.framework/Versions/A/Resources/HMBaseResources.bundle; sourceTree = "<absolute>"; };
 		C3A57CFE1667E3F000FC8167 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3A57CFF1667E3FD00FC8167 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		C3A57D001667E3FD00FC8167 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
@@ -210,8 +210,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C24E65E0168F23F4004DC9A4 /* Cameo.framework in Frameworks */,
 				C3C8EC1C167F84E80003C192 /* QuartzCore.framework in Frameworks */,
-				C3A57CF61667E2A600FC8167 /* Cameo.framework in Frameworks */,
 				C39A2566165EB20900F0E242 /* UIKit.framework in Frameworks */,
 				C39A2568165EB20900F0E242 /* Foundation.framework in Frameworks */,
 				C39A256A165EB20900F0E242 /* CoreGraphics.framework in Frameworks */,
@@ -306,7 +306,6 @@
 		C39A2556165EB20800F0E242 = {
 			isa = PBXGroup;
 			children = (
-				C3C8EC1B167F84E80003C192 /* QuartzCore.framework */,
 				C2716CE7165EDCB800ED24C2 /* Pingu */,
 				C39A2564165EB20900F0E242 /* Frameworks */,
 				C39A2562165EB20900F0E242 /* Products */,
@@ -324,10 +323,11 @@
 		C39A2564165EB20900F0E242 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C3A57CF51667E2A600FC8167 /* Cameo.framework */,
+				C24E65DF168F23F4004DC9A4 /* Cameo.framework */,
 				C39A2565165EB20900F0E242 /* UIKit.framework */,
 				C39A2567165EB20900F0E242 /* Foundation.framework */,
 				C39A2569165EB20900F0E242 /* CoreGraphics.framework */,
+				C3C8EC1B167F84E80003C192 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 		C3A57CF91667E2C200FC8167 /* bundles */ = {
 			isa = PBXGroup;
 			children = (
-				C3A57CF71667E2BA00FC8167 /* HMBaseResources.bundle */,
+				C24E65E1168F2426004DC9A4 /* HMBaseResources.bundle */,
 			);
 			name = bundles;
 			sourceTree = "<group>";
@@ -472,7 +472,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A57CF81667E2BA00FC8167 /* HMBaseResources.bundle in Resources */,
+				C24E65E2168F2426004DC9A4 /* HMBaseResources.bundle in Resources */,
 				C2716D03165EDCC800ED24C2 /* Icon-72.png in Resources */,
 				C2716D04165EDCC800ED24C2 /* Icon-72@2x.png in Resources */,
 				C2716D05165EDCC800ED24C2 /* Icon-Small-50.png in Resources */,
