@@ -101,8 +101,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C24E65DF168F23F4004DC9A4 /* Cameo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cameo.framework; path = /Users/joamag/Desktop/repo_extra/pingu_ios/../../../../../Documents/Cameo/Cameo.framework; sourceTree = "<absolute>"; };
-		C24E65E1168F2426004DC9A4 /* HMBaseResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HMBaseResources.bundle; path = /Documents/Cameo/Cameo.framework/Versions/A/Resources/HMBaseResources.bundle; sourceTree = "<absolute>"; };
+		C24E65DF168F23F4004DC9A4 /* Cameo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cameo.framework; path = /Applications/Xcode.app/Contents/Developer/../../../../Documents/Cameo/Cameo.framework; sourceTree = "<absolute>"; };
+		C24E65E1168F2426004DC9A4 /* HMBaseResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = HMBaseResources.bundle; path = /Applications/Xcode.app/Contents/Developer/../../../../Documents/Cameo/Cameo.framework/Versions/A/Resources/HMBaseResources.bundle; sourceTree = "<absolute>"; };
 		C2716CE9165EDCC800ED24C2 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C2716CEA165EDCC800ED24C2 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C2716CEB165EDCC800ED24C2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
