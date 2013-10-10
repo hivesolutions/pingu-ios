@@ -38,16 +38,16 @@ static int itemVLMargin = 32;
     self = [super initWithFrame:frame];
     if(self) {
         self.up = NO;
-        
+
         _scrollView = [[UIScrollView alloc] initWithFrame:frame];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithFrame:frame];
         _overlay.alpha = 0.0;
         _overlay.backgroundColor = [UIColor blackColor];
         _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
+
         self.flipViews = [[NSMutableArray alloc] init];
-        
+
         [self addSubview:_scrollView];
         [_scrollView addSubview:_overlay];
     }
@@ -58,14 +58,14 @@ static int itemVLMargin = 32;
     self = [super initWithCoder:aDecoder];
     if(self) {
         self.up = NO;
-        
+
         _scrollView = [[UIScrollView alloc] initWithCoder:aDecoder];
         _scrollView.scrollEnabled = YES;
         _overlay = [[UIScrollView alloc] initWithCoder:aDecoder];
         _overlay.alpha = 0.0;
         _overlay.backgroundColor = [UIColor blackColor];
         _overlay.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
+
         self.flipViews = [[NSMutableArray alloc] init];
 
         [self addSubview:_scrollView];
@@ -79,7 +79,7 @@ static int itemVLMargin = 32;
     [_scrollView addSubview:flipView];
 
     flipView.delegate = self;
-    
+
     [self doLayout];
 }
 
@@ -88,19 +88,19 @@ static int itemVLMargin = 32;
     // landscape in order to correctly retrieve the correct measures
     UIInterfaceOrientation orientation = [UIDevice currentDevice].orientation;
     bool isLandscape = UIDeviceOrientationIsLandscape(orientation);
-    
+
     // retrieves the scroll view with as the with to be used
     // in a per page basis
     CGFloat pageWidth = _scrollView.frame.size.width;
-    
+
     CGFloat itemHMargin = isLandscape ? itemHLMargin : itemHPMargin;
     CGFloat itemVMargin = isLandscape ? itemVLMargin : itemVPMargin;
-    
+
     // calculates the total width and height for the items
     // to be drawn in the target area
     CGFloat itemTWidth = itemWidth + itemHMargin;
     CGFloat itemTHeight = itemHeight + itemVMargin;
-    
+
     // calculates the various intermediate values to be used
     // in the render operation of each of the items
     int items = [self.flipViews count];
@@ -108,7 +108,7 @@ static int itemVLMargin = 32;
     int extraWidth = pageWidth - (itemsLine * itemTWidth - itemHMargin);
     int extraPadding = (int) round((float) extraWidth / 2.0f);
     int numberRows = (int) ceil((float) items / (float) itemsLine);
-    
+
     // updates the content size of the scroll view with the current width
     // (not changing it) and the heigth with enough room for the complete
     // set of element in the mosaic, then updates the overlay size to reflect
@@ -128,7 +128,7 @@ static int itemVLMargin = 32;
     // starts the line counter in minus one so that the
     // initial modulus opertion puts it in zero
     int line = -1;
-    
+
     // iterates over all the current flip views in order to
     // correctly position them in the current panel
     for(int index = 0; index < items; index++) {
@@ -136,11 +136,11 @@ static int itemVLMargin = 32;
         // item by using the current index and the items (per)
         // line value in a modulus operation
         int offset = index % itemsLine;
-        
+
         // in case the current offset is zero (start of a line)
         // the line counter must be incremented
         if(offset == 0) { line++; }
-        
+
         FlipView *flipView = self.flipViews[index];
         flipView.frame = CGRectMake(
             extraPadding + itemTWidth * offset,
@@ -153,7 +153,7 @@ static int itemVLMargin = 32;
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    
+
     // does the layout of the view
     // in order to expand the option items
     [self doLayout];
@@ -161,10 +161,10 @@ static int itemVLMargin = 32;
 
 - (void)didTap:(id)sender {
     FlipView *flipView = (FlipView *) sender;
-    
+
     if(flipView.pending) { return; }
     if(self.up && !flipView.up) { return; }
-    
+
     if(flipView.up) {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];

@@ -38,27 +38,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // creates the patter image to be used for the view background,
     // should be set as a pattern
     UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
-    
+
     UIImage *greenImage = [UIImage imageNamed:@"green-background.png"];
     self.topPanel.backgroundColor = [UIColor colorWithPatternImage:greenImage];
-    
+
     UIImage *leftImage = [UIImage imageNamed:@"right-background.png"];
     self.leftPanel.backgroundColor = [UIColor colorWithPatternImage:leftImage];
-    
+
     UIImage *rightImage = [UIImage imageNamed:@"right-background.png"];
     self.rightPanel.backgroundColor = [UIColor colorWithPatternImage:rightImage];
-    
+
     UIImage *chartImage = [UIImage imageNamed:@"chart-ipad.png"];
     self.chart.backgroundColor = [UIColor colorWithPatternImage:chartImage];
-    
+
     UIImage *shadowUp = [UIImage imageNamed:@"shadow-up.png"];
     self.shadowTop.backgroundColor = [UIColor colorWithPatternImage:shadowUp];
-    
+
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"LogoutButtonTitle", @"Logout")
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
@@ -74,7 +74,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
+
   //  HMProxyRequest *_proxyRequest = [[HMProxyRequest alloc] initWithPath:self path:@"sets.json"];
 //    _proxyRequest.delegate = self;
   //  _proxyRequest.parameters = [NSArray arrayWithObjects: nil];

@@ -38,12 +38,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     // creates the patter image to be used for the view background,
     // should be set as a pattern
     UIImage *patternImage = [UIImage imageNamed:@"main-background.png"];
     self.view.backgroundColor = [UIColor colorWithPatternImage:patternImage];
-    
+
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"LogoutButtonTitle", @"Logout")
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self

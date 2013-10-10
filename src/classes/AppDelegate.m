@@ -34,22 +34,22 @@
     // initializes the default values in the preferences structure
     // in case they don't already exist (and are defined)
     [self setDefaults];
-    
+
     // initializes the various layout relates structures, configuring
     // them to the expected behavior
     [self setLayout];
-    
+
     // creates a new window to hold the various views that will compose
     // the complete application, this is the many entry point for them
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+
     // checks if the current device is of type phone and in such case starts
     // the required structures for it
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         // creates the status view controller as the "main" view controller
         // to be used by the application
         StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewController" bundle:nil];
-    
+
         // creates the naviation controller to be used for the controll
         // of the various navigation controller and sets it as the root
         // view controller for the current main window
@@ -59,7 +59,7 @@
         // creates the servers view controller as the "main" view controller
         // to be used by the application
         ServersViewController *serversViewController = [[ServersViewController alloc] initWithNibName:@"ServersViewController" bundle:nil];
-    
+
         // creates the naviation controller to be used for the controll
         // of the various navigation controller and sets it as the root
         // view controller for the current main window
@@ -70,7 +70,7 @@
     // makes the just created window as the top level element for the current device
     // this should bring the interface up to the screen
     [self.window makeKeyAndVisible];
-    
+
     // returns success, application started with success
     return YES;
 }
@@ -103,11 +103,11 @@
     UIImage *headerBackgroundImageSmall = [UIImage imageNamed:@"header-background-small.png"];
     [[UINavigationBar appearance] setBackgroundImage:headerBackgroundImage forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBackgroundImage:headerBackgroundImageSmall forBarMetrics:UIBarMetricsLandscapePhone];
-    
+
     // sets the bar style for the global appearence as black opaque so that the
     // characters are correctly rendered
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    
+
     // retrieves the various button related images for the button and the
     // back button and sets them in the global appearence object so that
     // the naviation controller's buttons are affected by the behavior
@@ -135,7 +135,7 @@
     [attributes setValue:[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1.0] forKey:UITextAttributeTextShadowColor];
     [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(-1.0, -1.0)] forKey:UITextAttributeTextShadowOffset];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
-    
+
     // creates an attributes dictionary and populates it with both the text shadow
     // color and the the offset for it then sets in the gobal appearence map for
     // the control state normal (should apply to all the bar buttons)
@@ -143,7 +143,7 @@
     [attributes setValue:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0] forKey:UITextAttributeTextShadowColor];
     [attributes setValue:[NSValue valueWithUIOffset:UIOffsetMake(1.0, 1.0)] forKey:UITextAttributeTextShadowOffset];
     [[UIBarButtonItem appearance] setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    
+
     // creates an attributes dictionary and populates it with both the text colloer
     // for it then sets in the gobal appearence map for the control state normal
     // (should apply to all the tab bar items)

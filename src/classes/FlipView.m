@@ -40,7 +40,7 @@ static int backViewHeight = 640;
     if(self) {
         self.up = NO;
         self.pending = NO;
-        
+
         self.frontView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tobias.jpg"]];
         StatusViewController *statusViewController = [[StatusViewController alloc] initWithNibName:@"StatusViewControllerIpad" bundle:nil];
         self.backView = statusViewController.view;
@@ -70,54 +70,54 @@ static int backViewHeight = 640;
 - (void)bringUp {
     if(self.pending) { return; }
     if(self.up) { return; }
-    
+
     // sets both the front and back views as visible (enforces
     // the correct rendering of the animation)
     self.frontView.hidden = NO;
     self.backView.hidden = NO;
-    
+
     // retrieves the references for both the top and the bottom layers
     // ir order to correctly manipulate them
     CALayer *topLayer = self.frontView.layer;
     CALayer *bottomLayer = self.backView.layer;
-    
+
     // brings both views to the front so that they stay on
     // on top of the other views contained in the super view
     [self.frontView.superview bringSubviewToFront:self.frontView];
     [self.backView.superview bringSubviewToFront:self.backView];
-    
+
     // sets the z position for both layers to a high value so
     // that the layer itself remains on top
     topLayer.zPosition = 1000.0;
     bottomLayer.zPosition = 1000.0;
-    
+
     // creates and sets the perspective in both the top
     // and the bottom layer to provide a sence of depth
     CATransform3D perspective = CATransform3DIdentity;
     perspective.m34 = 1.0f / 1250.f;
     topLayer.transform = perspective;
     bottomLayer.transform = perspective;
-    
+
     // creates both the animation for the top layer and the animation
     // for the bottom layer, in order to be able to create the flip effect
     // then sets the delegate for the animation as the current instances
     CAAnimation *topAnimation = [self upAnimation:0.5 forTopLayer:YES];
     CAAnimation *bottomAnimation = [self upAnimation:0.5 forTopLayer:NO];
     topAnimation.delegate = self;
-    
+
     // creates the transaction for the anumation and pushes both animations
     // to the core animation stack of animations (to be processed)
     [CATransaction begin];
     [topLayer addAnimation:topAnimation forKey:@"flip"];
     [bottomLayer addAnimation:bottomAnimation forKey:@"flip"];
     [CATransaction commit];
-    
+
     // sets the up flag indicating that the current state of the view
     // is (centered in the front of the panel)
     self.up = YES;
     self.pending = YES;
     self.userInteractionEnabled = NO;
-    
+
     // calls the appropriate delegate methods to indicate that the up
     // operation has already started
     if(self.delegate && [self.delegate respondsToSelector:@selector(didStart:)]) {
@@ -136,39 +136,39 @@ static int backViewHeight = 640;
     // the correct rendering of the animation)
     self.frontView.hidden = NO;
     self.backView.hidden = NO;
-    
+
     // retrieves the references for both the top and the bottom layers
     // ir order to correctly manipulate them
     CALayer *topLayer = self.backView.layer;
     CALayer *bottomLayer = self.frontView.layer;
-    
+
     // creates and sets the perspective in both the top
     // and the bottom layer to provide a sence of depth
     CATransform3D perspective = CATransform3DIdentity;
     perspective.m34 = 1.0f / 1250.f;
     topLayer.transform = perspective;
     bottomLayer.transform = perspective;
-    
+
     // creates both the animation for the top layer and the animation
     // for the bottom layer, in order to be able to create the flip effect
     // then sets the delegate for the animation as the current instances
     CAAnimation *topAnimation = [self downAnimation:0.5 forTopLayer:YES];
     CAAnimation *bottomAnimation = [self downAnimation:0.5 forTopLayer:NO];
     topAnimation.delegate = self;
-    
+
     // creates the transaction for the anumation and pushes both animations
     // to the core animation stack of animations (to be processed)
     [CATransaction begin];
     [topLayer addAnimation:topAnimation forKey:@"flip"];
     [bottomLayer addAnimation:bottomAnimation forKey:@"flip"];
     [CATransaction commit];
-    
+
     // unsets the up flag indicating that the current state of the view
     // is thumbnailed down in the panel
     self.up = NO;
     self.pending = YES;
     self.userInteractionEnabled = NO;
-    
+
     // calls the appropriate delegate methods to indicate that the down
     // operation has already started
     if(self.delegate && [self.delegate respondsToSelector:@selector(didStart:)]) {
@@ -182,21 +182,21 @@ static int backViewHeight = 640;
 - (void)doLayout {
     float x;
     float y;
-    
+
     _ratio = backViewWidth / self.frame.size.width;
     _ratioI = 1.0 / _ratio;
-    
+
     if(self.up) {
         x = (self.backView.superview.frame.size.width / 2.0) - (backViewWidth / 2.0);
         y = (self.backView.superview.frame.size.height / 2.0) - (backViewHeight / 2.0);
     } else {
         x = self.frame.origin.x - (backViewWidth / 2.0 - self.frame.size.width / 2.0);
         y = self.frame.origin.y - (backViewHeight / 2.0 - self.frame.size.height / 2.0);
-        
+
         CATransform3D scale = CATransform3DMakeScale(_ratioI, _ratioI, _ratioI);
         self.frontView.layer.transform = scale;
     }
-    
+
     self.frontView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
     self.backView.frame = CGRectMake(x, y, backViewWidth, backViewHeight);
 }
@@ -209,7 +209,7 @@ static int backViewHeight = 640;
     CABasicAnimation *scaleAnimation = nil;
     CABasicAnimation *translateXAnimation = nil;
     CABasicAnimation *translateYAnimation = nil;
-    
+
     // creates the rotation animation arround the y axis, this
     // is considered the main animation, note that the way of
     // the roation varies in conformance with the begins on top
@@ -218,7 +218,7 @@ static int backViewHeight = 640;
     CGFloat endValue = isTop ? -M_PI : 0.0f;
     rotationAnimation.fromValue = [NSNumber numberWithDouble:startValue];
     rotationAnimation.toValue = [NSNumber numberWithDouble:endValue];
-    
+
     // checks if the scale factor is diferent from the "normal" on
     // in such case performs a scale operation that is reversed
     scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -226,7 +226,7 @@ static int backViewHeight = 640;
     scaleAnimation.toValue = [NSNumber numberWithFloat:1.0];
     scaleAnimation.duration = duration;
     scaleAnimation.autoreverses = NO;
-    
+
     // creates the animation that will be used to correctly position the layers
     // on top of the current panel (centered on screen)
     translateXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
@@ -235,7 +235,7 @@ static int backViewHeight = 640;
     translateYAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
     translateYAnimation.toValue = [NSNumber numberWithFloat:self.superview.center.y];
     translateYAnimation.duration = duration;
-    
+
     // combines the complete set of animations into a single
     // sets so that all of them are performed at once
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
@@ -245,12 +245,12 @@ static int backViewHeight = 640;
                                  translateXAnimation,
                                  translateYAnimation,
                                  nil];
-    
+
     // sets the easy in and out timing function for the animation and sets
     // the duration of the complete combines animation
     animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animationGroup.duration = duration;
-    
+
     // avoids the removal of the layer on the completion, this avoids an
     // unnecessary flickering effect, then returns the animation group
     animationGroup.fillMode = kCAFillModeForwards;
@@ -266,7 +266,7 @@ static int backViewHeight = 640;
     CABasicAnimation *scaleAnimation = nil;
     CABasicAnimation *translateXAnimation = nil;
     CABasicAnimation *translateYAnimation = nil;
-    
+
     // creates the rotation animation arround the y axis, this
     // is considered the main animation, note that the way of
     // the roation varies in conformance with the begins on top
@@ -275,7 +275,7 @@ static int backViewHeight = 640;
     CGFloat endValue = isTop ? M_PI : 0.0f;
     rotationAnimation.fromValue = [NSNumber numberWithDouble:startValue];
     rotationAnimation.toValue = [NSNumber numberWithDouble:endValue];
-    
+
     // checks if the scale factor is diferent from the "normal" on
     // in such case performs a scale operation that is reversed
     scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -283,12 +283,12 @@ static int backViewHeight = 640;
     scaleAnimation.toValue = [NSNumber numberWithFloat:_ratioI];
     scaleAnimation.duration = duration;
     scaleAnimation.autoreverses = NO;
-    
+
     // calculçates the returning position for the frame taking
     // into account the raio between the top and the bottom sizes
     float x = self.frame.origin.x + backViewWidth / (_ratio * 2.0);
     float y = self.frame.origin.y + backViewHeight / (_ratio * 2.0);
-    
+
     // creates the animation that will be used to correctly position the layers
     // back on their original position (rollback position)
     translateXAnimation = [CABasicAnimation animationWithKeyPath:@"position.x"];
@@ -297,7 +297,7 @@ static int backViewHeight = 640;
     translateYAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
     translateYAnimation.toValue = [NSNumber numberWithFloat:y];
     translateYAnimation.duration = duration;
-    
+
     // combines the complete set of animations into a single
     // sets so that all of them are performed at once
     CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
@@ -307,12 +307,12 @@ static int backViewHeight = 640;
                                  translateXAnimation,
                                  translateYAnimation,
                                  nil];
-    
+
     // sets the easy in and out timing function for the animation and sets
     // the duration of the complete combines animation
     animationGroup.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     animationGroup.duration = duration;
-    
+
     // avoids the removal of the layer on the completion, thi avoids an
     // unnecessary flickering effect, then returns the animation group
     animationGroup.fillMode = kCAFillModeForwards;
@@ -322,14 +322,14 @@ static int backViewHeight = 640;
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(bool)flag {
     if(!flag) { return; }
-    
+
     if(self.up) {
         self.frontView.hidden = YES;
-        
+
         [self.backView.layer removeAllAnimations];
         [self.frontView.layer removeAllAnimations];
         [self doLayout];
-        
+
         if(self.delegate && [self.delegate respondsToSelector:@selector(didEndUp:)]) {
             [self.delegate didEndUp:self];
         }
@@ -339,19 +339,19 @@ static int backViewHeight = 640;
         self.frontView.layer.zPosition = -1.0;
 
         self.backView.hidden = YES;
-    
+
         [self.backView.layer removeAllAnimations];
         [self.frontView.layer removeAllAnimations];
         [self doLayout];
-        
+
         if(self.delegate && [self.delegate respondsToSelector:@selector(didEndDown:)]) {
             [self.delegate didEndDown:self];
         }
     }
-    
+
     self.pending = NO;
     self.userInteractionEnabled = YES;
-    
+
     if(self.delegate && [self.delegate respondsToSelector:@selector(didEnd:)]) {
         [self.delegate didEnd:self];
     }
